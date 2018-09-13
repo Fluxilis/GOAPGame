@@ -1,0 +1,2 @@
+Can make commits in sourcetree
+Need to push in git bash, not sign in over the popup, but over the in-terminal lines!
