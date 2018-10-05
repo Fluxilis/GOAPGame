@@ -30,17 +30,57 @@ Writes the Human-Readable Columns into syntax correct text for the Unreal Datata
 --------------------------------------------------------------------------------------------------
 Display ConstructionRecipe in EXPORT Sheet
 Searches and displays the Recipe in the ConstructionRecipes Sheet for the Row with the Name of the recipe assigned to this type of building in the HumanReadable sheet.
-
 --------------------------------------------------------------------------------------------------
 
 =INDIRECT(
 	ADDRESS(
-		MATCH(
-			HumanReadable.F2;ConstructionRecipes.$A$1:$A$500;0);
-			MATCH("ConstructionRecipe";ConstructionRecipes.$A$1:$H$1;0);
+		MATCH(HumanReadable.$F2;ConstructionRecipes.$A$1:$A$500;0);
+		MATCH("ConstructionRecipe";ConstructionRecipes.$A$1:$H$1;0);
 			1;1;"ConstructionRecipes"
 	)
 )
 
 --------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------
+Stockpiles:
+If C:E have a value 
+--------------------------------------------------------------------------------------------------
+
+=IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2));NOT(ISBLANK(E2)));
+	"((itemType="&C2&",stockpileType="&D2&",maxStorage="&E2&")"
+	&IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2));NOT(ISBLANK(H2)));
+		",(itemType="&F2&",stockpileType="&G2&",maxStorage="&H2&")"
+		&IF(AND(NOT(ISBLANK(I2));NOT(ISBLANK(J2));NOT(ISBLANK(K2)));
+			",(itemType="&I2&",stockpileType="&J2&",maxStorage="&K2&")"
+			&IF(AND(NOT(ISBLANK(L2));NOT(ISBLANK(M2));NOT(ISBLANK(N2)));
+				",(itemType="&L2&",stockpileType="&M2&",maxStorage="&N2&")"
+				&IF(AND(NOT(ISBLANK(O2));NOT(ISBLANK(P2));NOT(ISBLANK(Q2)));
+					",(itemType="&O2&",stockpileType="&P2&",maxStorage="&Q2&"))"
+					;
+					")")
+				;")")
+			;")")
+		;")")
+	;"")
+
+"(materials=" &IF(AND(NOT(ISBLANK(D2));NOT(ISBLANK(E2)));   "((itemType="&D2&",amount="&E2&")"  &IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2)));   ",(itemType="&F2&",amount="&G2&")"   &IF(AND(NOT(ISBLANK(H2));NOT(ISBLANK(I2)));    ",(itemType="&H2&",amount="&I2&")"    &IF(AND(NOT(ISBLANK(J2));NOT(ISBLANK(K2)));     ",(itemType="&J2&",amount="&K2&")"     &IF(AND(NOT(ISBLANK(L2));NOT(ISBLANK(M2)));      ",(itemType="&L2&",amount="&M2&"))";      ")");     ")");    ")");   ")");  "") &",builderHits=" &IF(NOT(ISBLANK(C2))  ;C2  ;"0") &")"
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Display ConstructionRecipe in EXPORT Sheet
+--------------------------------------------------------------------------------------------------
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.$G2;Stockpiles.$A$1:$A$500;0);
+		MATCH("Stockpiles";Stockpiles.$A$1:$H$1;0);
+			1;1;"Stockpiles"
+	)
+)
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+
+
+
+
