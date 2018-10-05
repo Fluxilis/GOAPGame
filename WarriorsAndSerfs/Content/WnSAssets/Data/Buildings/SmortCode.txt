@@ -1,0 +1,46 @@
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+ConstructionRecipe:
+Writes the Human-Readable Columns into syntax correct text for the Unreal Datatable.
+--------------------------------------------------------------------------------------------------
+
+="(materials="
+&IF(AND(NOT(ISBLANK(D2));NOT(ISBLANK(E2)));	
+	"((itemType="&D2&",amount="&E2&")"
+	&IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2)));
+		",(itemType="&F2&",amount="&G2&")"
+		&IF(AND(NOT(ISBLANK(H2));NOT(ISBLANK(I2)));
+			",(itemType="&H2&",amount="&I2&")"
+			&IF(AND(NOT(ISBLANK(J2));NOT(ISBLANK(K2)));
+				",(itemType="&J2&",amount="&K2&")"
+				&IF(AND(NOT(ISBLANK(L2));NOT(ISBLANK(M2)));
+					",(itemType="&L2&",amount="&M2&"))";
+					")");
+				")");
+			")");
+		")");
+	"")
+&",builderHits="
+&IF(NOT(ISBLANK(C2))
+	;C2
+	;"0")
+&")"
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Display ConstructionRecipe in EXPORT Sheet
+Searches and displays the Recipe in the ConstructionRecipes Sheet for the Row with the Name of the recipe assigned to this type of building in the HumanReadable sheet.
+
+--------------------------------------------------------------------------------------------------
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(
+			HumanReadable.F2;ConstructionRecipes.$A$1:$A$500;0);
+			MATCH("ConstructionRecipe";ConstructionRecipes.$A$1:$H$1;0);
+			1;1;"ConstructionRecipes"
+	)
+)
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
