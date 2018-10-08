@@ -67,7 +67,7 @@ If C:E have a value
 
 --------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------
-Display ConstructionRecipe in EXPORT Sheet
+Display Stockpiles in EXPORT Sheet
 --------------------------------------------------------------------------------------------------
 
 =INDIRECT(
@@ -80,7 +80,85 @@ Display ConstructionRecipe in EXPORT Sheet
 
 --------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------
+Recipes:
+--------------------------------------------------------------------------------------------------
 
+=IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2));NOT(ISBLANK(E2));NOT(ISBLANK(J2));NOT(ISBLANK(K2)));
+	"(educts=((itemType="&D2&",amount="&E2&")"
+	&IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2)));
+		",(itemType="&F2&",amount="&G2&")"
+		&IF(AND(NOT(ISBLANK(H2));NOT(ISBLANK(I2)));
+			",(itemType="&H2&",amount="&I2&"))";
+			")")
+		;")")
+	&",products=((itemType="&J2&",amount="&K2&")"
+	&IF(AND(NOT(ISBLANK(L2));NOT(ISBLANK(M2)));
+		",(itemType="&L2&",amount="&M2&")"
+		&IF(AND(NOT(ISBLANK(N2));NOT(ISBLANK(O2)));
+			",(itemType="&N2&",amount="&O2&"))";
+			")")
+		;")")
+	&",craftDuration="&C2&")"
+	;"")
 
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+RecipeList
+--------------------------------------------------------------------------------------------------
 
+=IF(NOT(ISBLANK($C2));
+	"("
+	&INDIRECT(ADDRESS(
+		MATCH($C2;CraftingRecipes.$A$1:$A$500;0);
+		MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+		1;1;"CraftingRecipes"
+	))
+	&IF(NOT(ISBLANK($D2));
+		","
+		&INDIRECT(ADDRESS(
+			MATCH($D2;CraftingRecipes.$A$1:$A$500;0);
+			MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+			1;1;"CraftingRecipes"
+		))
+		&IF(NOT(ISBLANK($E2));
+			","
+			&INDIRECT(ADDRESS(
+				MATCH($E2;CraftingRecipes.$A$1:$A$500;0);
+				MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+				1;1;"CraftingRecipes"
+			))
+			&IF(NOT(ISBLANK($F2));
+				","
+				&INDIRECT(ADDRESS(
+					MATCH($F2;CraftingRecipes.$A$1:$A$500;0);
+					MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+					1;1;"CraftingRecipes"
+				))
+				&IF(NOT(ISBLANK($G2));
+					","
+					&INDIRECT(ADDRESS(
+						MATCH($G2;CraftingRecipes.$A$1:$A$500;0);
+						MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+						1;1;"CraftingRecipes"
+					));
+				")")
+			;")")
+		;")")
+	;")")
+;"")
+		
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Display RecipeList in EXPORT Sheet
+--------------------------------------------------------------------------------------------------
 
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.$J2;RecipeList.$A$1:$A$500;0);
+		MATCH("RecipeList";RecipeList.$A$1:$H$1;0);
+			1;1;"RecipeList"
+	)
+)
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
