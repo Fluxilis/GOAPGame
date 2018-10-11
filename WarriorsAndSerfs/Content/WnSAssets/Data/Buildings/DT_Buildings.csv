@@ -79,17 +79,17 @@ School,14,400,None,5,0,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,a
 Requires Gold Coins
 
 No one needs to work at the school.",BP_School,schoolIcon,default,,
-Weapons Workshop,7,250,Carpenter,2,1,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)","((itemType=Lumber,stockpileType=Educt,maxStorage=5),(itemType=HandAxe,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=Lumber,amount=2)),products=((itemType=HandAxe,amount=1)),craftDuration=7))","In the Weapon Workshop, the Carpenter creates small axes.
+Weapon Workshop,7,250,Carpenter,2,1,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)","((itemType=Lumber,stockpileType=Educt,maxStorage=5),(itemType=HandAxe,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=Lumber,amount=2)),products=((itemType=HandAxe,amount=1)),craftDuration=7))","In the Weapon Workshop, the Carpenter creates small axes.
 
 Requires Lumber.
 Produes Hand Axe.
 
-A carpenter needs to work in the weapons workshop.",BP_WeaponsWorkshop,weaponsWorkshopIcon,default,,
+A carpenter needs to work in the weapons workshop.",BP_WeaponWorkshop,weaponWorkshopIcon,default,,
 Warehouse,16,600,None,2,1,"(materials=((itemType=Lumber,amount=5),(itemType=Stone,amount=7)),builderHits=90)","((itemType=Log,stockpileType=Warehouse,maxStorage=1000),(itemType=Lumber,stockpileType=Warehouse,maxStorage=1000),(itemType=HandAxe,stockpileType=Warehouse,maxStorage=1000),(itemType=Fish,stockpileType=Warehouse,maxStorage=1000),(itemType=Bread,stockpileType=Warehouse,maxStorage=1000),(itemType=Stone,stockpileType=Warehouse,maxStorage=1000),(itemType=GoldCoins,stockpileType=Warehouse,maxStorage=1000),(itemType=Wheat,stockpileType=Warehouse,maxStorage=1000),(itemType=Flour,stockpileType=Warehouse,maxStorage=1000),(itemType=IronOre,stockpileType=Warehouse,maxStorage=1000),(itemType=GoldOre,stockpileType=Warehouse,maxStorage=1000),(itemType=Coal,stockpileType=Warehouse,maxStorage=1000),(itemType=Iron,stockpileType=Warehouse,maxStorage=1000),(itemType=Wine,stockpileType=Warehouse,maxStorage=1000),(itemType=Sausages,stockpileType=Warehouse,maxStorage=1000))",0,0,#N/A,#N/A,"The Warehouse stores all of your items. 
 
 No one needs to work at the Warehouse.",BP_Warehouse,warehouseIcon,default,,
-,0,250,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,default,,
-,0,250,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,default,,
+MissingNo,0,1,MissingNo,0,0,#N/A,#N/A,0,0,#N/A,#N/A,Missing Building,0,missingIcon,default,,
+Debug,0,1,Debug,0,0,#N/A,#N/A,0,0,#N/A,#N/A,Debug Building,0,debugIcon,default,,
 ,0,250,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,default,,
 ,0,250,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,default,,
 ,0,250,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,default,,
