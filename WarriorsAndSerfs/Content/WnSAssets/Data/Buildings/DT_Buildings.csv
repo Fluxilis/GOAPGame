@@ -10,7 +10,7 @@ Requires Logs.
 Produces Lumber
 
 A carpenter needs to work in the sawmill.",BP_Sawmill,sawmillIcon,default,,
-Bakery,Bakery,6,250,Baker,3,1,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)","((itemType=Flour,stockpileType=Educt,maxStorage=5),(itemType=Flour,stockpileType=Educt,maxStorage=5),(itemType=Bread,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=Flour,amount=1)),products=((itemType=Bread,amount=1)),craftDuration=5))","The bakery houses a large furnace in which the baker bakes his delicious bread.
+Bakery,Bakery,6,250,Baker,3,1,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)","((itemType=Flour,stockpileType=Educt,maxStorage=5),(itemType=Bread,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=Flour,amount=1)),products=((itemType=Bread,amount=1)),craftDuration=5))","The bakery houses a large furnace in which the baker bakes his delicious bread.
 
 Requires Flour.
 Produces Bread.
