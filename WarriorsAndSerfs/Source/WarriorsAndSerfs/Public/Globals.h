@@ -44,17 +44,6 @@ enum class ELotType : uint8
 };
 
 UENUM(BlueprintType)
-enum class EBuildingType : uint8
-{
-	MissingNo, Debug, 
-	Warehouse, Inn, School, 
-	Woodcutters, Sawmill, ForestingLodge, Farm, Mill, Bakery, WeaponWorkshop,
-	Quarry, Goldmine, Ironmine, Coalmine, Mint, IronSmeltery, Palace,
-	Pigfarm, Stable, Butchery, Tannery, Vineyard, FishingHut, WeaponSmithy, ArmorSmithy, ArmorWorkshop, Keep, DefenseTower, Road
-
-};
-
-UENUM(BlueprintType)
 enum class EInteractEnvType : uint8
 {
 	MissingNo, Debug, //Debug
@@ -115,10 +104,6 @@ public:
 	//returns the (player-side) name of the Lot
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	static FString GetLotType(ELotType lot);
-
-	//returns the (player-side) name of the Building
-	UFUNCTION(BlueprintCallable, BlueprintPure)
-	static FString GetBuildingType(EBuildingType building);
 
 	//returns the (player-side) name of the interactable
 	UFUNCTION(BlueprintCallable, BlueprintPure)

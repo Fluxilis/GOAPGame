@@ -1,0 +1,77 @@
+Name,DisplayName,OrderInLists,HelpText,Icon,3dMesh
+Log,Log,1,"A Tree Trunk cut down and disbranched.
+
+Harvested in by Lumberjack in Woodcutters'.
+
+Used in Sawmill to make Lumber.",logIcon,log
+Lumber,Lumber,2,"Wooden planks, ready for use.
+
+Made in Sawmill from Logs.
+
+Used in Construction and Weapons Workshop.",lumberIcon,lumber
+Stone,Stone,3,"Stone Building Blocks.
+
+Harvested and hewn into shape by the Mason in a Quarry.
+
+Used in construction.",stoneIcon,default
+Wheat,Wheat,4,"Golden Food Source.
+
+Harvested by a farmer in a Farm.
+
+Used in Mill to make Flour.",wheatIcon,default
+Flour,Flour,5,"Soft, white powder, ready to be baked!
+
+Made in Mill, from Grain.
+
+Used in the Bakery to bake bread.",flourIcon,default
+Bread,Bread,6,"Delicious Bread, providing sustenance to your citizens.
+
+Baked in the Bakery from Flour.
+
+Delivered to the Inn to feed your citizens.",breadIcon,bread
+GoldOre,Gold Ore,7,"Rocks with a few specks of gold in them.
+
+Mined by a goldminer from gold veins.
+
+Melted into golden coins in the Mint.",goldoreIcon,default
+IronOre,Iron Ore,8,"Reddish rocks that taste rusty.
+
+Mined by an ironminer from iron veins.
+
+Melted into iron bars in the iron smeltery.",ironoreIcon,default
+Coal,Coal,9,"Black, flammable rocks.
+
+Mined by a coalminer from a coal deposit.
+
+Used to to fire the cauldrons in the mint and the iron smeltery.",coalIcon,default
+Iron,Iron,10,"Heavy Iron Bars.
+
+Melted from iron ore with coal in the Iron Smeltery.
+
+Used in the construction of the Palace.",ironIcon,default
+GoldCoins,Gold Coins,11,"Precisely weighted golden coins.
+
+Melted from gold ore with coal, and pressed into shape in the mint.
+
+Used to educate Citizens in the school, and in the construction of the Palace.",goldCoinsIcon,goldCoins
+Wine,Wine,12,"Fermented Grape juice, sometimes referred to blood of the gods.
+
+Made in the Vineyard.
+
+Delivered to the Inn to feed your citizens.",default,default
+HandAxe,Hand Axe,13,"A small axe sharp enough to disarm a man.
+
+Made in Weapons workshop from Lumber.
+
+Used in construction of the Palace.",handAxeIcon,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
+,0,0,missing Info,default,default
