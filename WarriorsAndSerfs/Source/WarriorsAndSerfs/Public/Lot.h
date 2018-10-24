@@ -26,11 +26,11 @@ struct FStockpile
 
 public:
 	FStockpile();
-	FStockpile(EItem type, EStockpileType pileType, int maxStore);
+	FStockpile(FName type, EStockpileType pileType, int maxStore);
 
 	//item stockpiled here(eg log, plank, axe)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EItem itemType;
+	FName itemType;
 
 	//whether it is an educt, product or storage stockpile
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -130,35 +130,35 @@ public:
 	//Helper function
 	//returns nullptr if the building doesn't have a stockpile for this item.
 	//UFUNCTION(BlueprintCallable) //Exposed pointer to structs not allowed in UE...
-	FStockpile* GetStockpile(EItem item);
+	FStockpile* GetStockpile(FName item);
 
 	//Returns wether this Lot HAS a stockpile of this type. calls GetStockpile. (GetStockpile cannot be used in BP so...)
 	UFUNCTION(BlueprintCallable) 
-	bool HasStockpile(EItem item);
+	bool HasStockpile(FName item);
 
 	//adds item of type item to both predicted and actual amount.
 	UFUNCTION(BlueprintCallable)
-	void MakeItem(EItem item, int amount);
+	void MakeItem(FName item, int amount);
 
 	//removes item of type item from both predicted and actual amount.
 	UFUNCTION(BlueprintCallable)
-	void DeleteItem(EItem item, int amount);
+	void DeleteItem(FName item, int amount);
 
 	//adds ONE item of type item to the stockpile
 	UFUNCTION(BlueprintCallable)
-	void AddItem(EItem item, int amount);
+	void AddItem(FName item, int amount);
 
 	//adds this item to the predicted stockpile
 	UFUNCTION(BlueprintCallable)
-	void AddPredictedItem(EItem item, int amount);
+	void AddPredictedItem(FName item, int amount);
 
 	//removes ONE item of type item from the stockpile
 	UFUNCTION(BlueprintCallable)
-	void RemoveItem(EItem item, int amount);
+	void RemoveItem(FName item, int amount);
 
 	//removes this item from the predicted stockpile
 	UFUNCTION(BlueprintCallable)
-	void RemovePredictedItem(EItem item, int amount);
+	void RemovePredictedItem(FName item, int amount);
 
 	//Update ui that has already spawned
 	UFUNCTION(BlueprintImplementableEvent)
@@ -166,12 +166,12 @@ public:
 
 	//adds a stockpile from the list.
 	UFUNCTION(BlueprintCallable)
-	void AddStockpile(EItem item, EStockpileType type, int maxStorage);
+	void AddStockpile(FName item, EStockpileType type, int maxStorage);
 
 	//removes the stockpile from the list.
 	//used for constructionsites, when all materials of a kind have arrived to the site.
 	UFUNCTION(BlueprintCallable)
-	void RemoveStockpile(EItem item);
+	void RemoveStockpile(FName item);
 
 
 	//For Deliverysystem
@@ -196,36 +196,36 @@ public:
 	//checks if this building has an offered (and not active) push job for an item
 	//returns the job if one is found, else returns nullptr.
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UJob* HasPushJobForItem(EItem item, int amount);
+	UJob* HasPushJobForItem(FName item, int amount);
 
 	//checks if this building has an offered (and not active) pull job for an item
 	//returns the job if one is found, else returns nullptr.
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	UJob* HasPullJobForItem(EItem item, int amount);
+	UJob* HasPullJobForItem(FName item, int amount);
 
 	//checks if this building has an item there (eg in order to be picked up)
 	//will only attempt to get item from non-educt stockpile
 	//returns true only if precictedStock and currentStock are high enough!
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	bool ItemAvailable(EItem item, int amount);
+	bool ItemAvailable(FName item, int amount);
 
 	//checks if this building has an item there (eg in order to be picked up)
 	//however this function will also return true for educt stockpiles! (used eg for education buildings)
 	//returns true only if both precictedStock and currentStock are high enough!
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	bool HasItemStored(EItem item, int amount);
+	bool HasItemStored(FName item, int amount);
 
 	//checks if this building has enough space for these items 
 	//will only attempt to fit item into non-product stockpile
 	//returns true only if precictedStock and currentStock are low enough!
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	bool CanFitItem(EItem item, int amount);
+	bool CanFitItem(FName item, int amount);
 	
 	//like CanFitItem, checks if this building has enough space for these items 
 	//however this function will also return true for product stockpiles! (used eg for harvesting buildings)
 	//returns true only if precictedStock and currentStock are low enough!
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	bool SpaceForItem(EItem item, int amount);
+	bool SpaceForItem(FName item, int amount);
 };
 
 

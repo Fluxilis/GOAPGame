@@ -25,7 +25,7 @@ FItemPriority::FItemPriority()
 {
 }
 
-FItemPriority::FItemPriority(EItem item, float prio)
+FItemPriority::FItemPriority(FName item, float prio)
 {
 	itemType = item;
 	priority = prio;
@@ -36,7 +36,7 @@ UJob::UJob()
 {}
 
 //Call after creating a new job.
-void UJob::InitJob(EJobType type, ALot* employee, EItem it, float prio)
+void UJob::InitJob(EJobType type, ALot* employee, FName it, float prio)
 {
 	jobType = type;
 	item = it;
@@ -244,7 +244,7 @@ void AJobManager::RemoveJobs(ALot* lot)
 //Creates a new Job and inits it's vars
 //adds job to JobOffers, as well as the employee's myJobs.
 //handles predicted items of employee, depending on jobType.
-UJob* AJobManager::MakeJob(EJobType jobType, ALot* employee, EItem item, float prio)
+UJob* AJobManager::MakeJob(EJobType jobType, ALot* employee, FName item, float prio)
 {
 	UJob* job;
 	job = NewObject<UJob>();
@@ -751,7 +751,7 @@ dump in a warehouse.
 *called by serfs after their job has been found invalid while carrying an item (eg if their destination building was destroyed)
 *returns a suitable job that has already been set to accepted.
 */
-UJob* AJobManager::FindJobForItem(EItem item)
+UJob* AJobManager::FindJobForItem(FName item)
 {
 	//Try to fullfill a pulljob
 
@@ -813,7 +813,7 @@ UJob* AJobManager::FindJobForItem(EItem item)
 //		{
 //			//this stockpile has unassigned items, see if you can fill a pullrequest.
 //
-//			EItem item = lot->stockpiles[i].itemType;
+//			FName item = lot->stockpiles[i].itemType;
 //
 //
 //			//iterate through jobOffers until a pulljob is found that needs this item
@@ -903,30 +903,35 @@ UJob* AJobManager::FindJobForItem(EItem item)
 
 void AJobManager::InitItemPriorities()
 {
-	itemPriorities.Add(FItemPriority(EItem::GoldCoins, 250));
+	dataTable = Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), NULL, "asdasd"));
 
-	itemPriorities.Add(FItemPriority(EItem::Bread, 200));
-	itemPriorities.Add(FItemPriority(EItem::Fish, 199));
-	itemPriorities.Add(FItemPriority(EItem::Sausages, 198));
-	itemPriorities.Add(FItemPriority(EItem::Wine, 197));
+	FItemAmount* row = dataTable->FindRow<FItemAmount>(TEXT("1"), TEXT(""));
 
-	itemPriorities.Add(FItemPriority(EItem::Wheat, 101));
-	itemPriorities.Add(FItemPriority(EItem::Flour, 100));
 
-	itemPriorities.Add(FItemPriority(EItem::GoldOre, 75));
-	itemPriorities.Add(FItemPriority(EItem::Coal, 75));
+	itemPriorities.Add(FItemPriority(FName::GoldCoins, 250));
 
-	itemPriorities.Add(FItemPriority(EItem::Lumber, 70));
-	itemPriorities.Add(FItemPriority(EItem::Log, 65));
-	itemPriorities.Add(FItemPriority(EItem::Stone, 64));
+	itemPriorities.Add(FItemPriority(FName::Bread, 200));
+	itemPriorities.Add(FItemPriority(FName::Fish, 199));
+	itemPriorities.Add(FItemPriority(FName::Sausages, 198));
+	itemPriorities.Add(FItemPriority(FName::Wine, 197));
 
-	itemPriorities.Add(FItemPriority(EItem::HandAxe, 40));
-	itemPriorities.Add(FItemPriority(EItem::Iron, 39));
-	itemPriorities.Add(FItemPriority(EItem::IronOre, 38));
+	itemPriorities.Add(FItemPriority(FName::Wheat, 101));
+	itemPriorities.Add(FItemPriority(FName::Flour, 100));
+
+	itemPriorities.Add(FItemPriority(FName::GoldOre, 75));
+	itemPriorities.Add(FItemPriority(FName::Coal, 75));
+
+	itemPriorities.Add(FItemPriority(FName::Lumber, 70));
+	itemPriorities.Add(FItemPriority(FName::Log, 65));
+	itemPriorities.Add(FItemPriority(FName::Stone, 64));
+
+	itemPriorities.Add(FItemPriority(FName::HandAxe, 40));
+	itemPriorities.Add(FItemPriority(FName::Iron, 39));
+	itemPriorities.Add(FItemPriority(FName::IronOre, 38));
 }
 
 //returns the priority value of the item.
-float AJobManager::GetItemPriority(EItem item)
+float AJobManager::GetItemPriority(FName item)
 {
 	for (int i = 0; i < itemPriorities.Num(); i++)
 	{
@@ -947,7 +952,7 @@ float AJobManager::GetItemPriority(EItem item)
 }
 
 //sets the itempriority for an item
-void AJobManager::SetItemPriority(EItem item, float newPrio)
+void AJobManager::SetItemPriority(FName item, float newPrio)
 {
 	for (int i = 0; i < itemPriorities.Num(); i++)
 	{
@@ -972,7 +977,7 @@ void AJobManager::SetItemPriority(EItem item, float newPrio)
 //returns the closest pullJob that requires the item, nullptr if none is found.
 //source is the Lot the request is coming from 
 //(if none found, I suggest to try FindFreeSpace())
-UJob* AJobManager::FindPullJobForItem(ALot* source, EItem item)
+UJob* AJobManager::FindPullJobForItem(ALot* source, FName item)
 {
 	UJob* chosenJob = nullptr;
 	float chosenJobDistance = MAX_JOB_DISTANCE;
@@ -1076,7 +1081,7 @@ UJob* AJobManager::FindPushJobForLot(ALot* source)
 //returns the closest Lot that can fit (predicted and actual) the item (educt or warehouse), nullptr if none is found.
 //prefers only selects a warehouse if no suitable other lot is found.
 //source is the Lot the request is coming from
-ALot* AJobManager::FindFreeSpace(ALot* source, EItem item)
+ALot* AJobManager::FindFreeSpace(ALot* source, FName item)
 {
 	ALot* chosenLot = nullptr;
 	float chosenLotDistance = MAX_JOB_DISTANCE;
@@ -1188,7 +1193,7 @@ ALot* AJobManager::FindFreeSpace(ALot* source, EItem item)
 
 //returns the closest Lot that has this item to offer (product or warehouse), nullptr if none is found.
 //destination is the Lot the request is coming from
-ALot* AJobManager::FindItem(ALot* destination, EItem item)
+ALot* AJobManager::FindItem(ALot* destination, FName item)
 {
 	ALot* chosenLot = nullptr;
 	float chosenLotDistance = MAX_JOB_DISTANCE;
@@ -1242,7 +1247,7 @@ ALot* AJobManager::FindItem(ALot* destination, EItem item)
 //returns the closest lot that has an offered (but not active) push job for this item, meaning it has this item available...
 //destination is the Lot this request is coming from.
 //returns nullptr if no such Lot is found.
-FLotWithJob* AJobManager::FindLotWithPushJob(ALot* destination, EItem item)
+FLotWithJob* AJobManager::FindLotWithPushJob(ALot* destination, FName item)
 {
 	FLotWithJob* chosenFLot = nullptr;
 	float chosenFLotDistance = MAX_JOB_DISTANCE;

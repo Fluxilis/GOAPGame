@@ -10,21 +10,6 @@
  * 
  */
 
- //All resources in the game are Items. 
- //Items cannot really exist on their own, so I decided that they would be represented in the most simple way, an enum.
-UENUM(BlueprintType)
-enum class EItem : uint8
-{
-	MissingNo, Debug, 
-	Log, Lumber, Wheat, Flour, Bread, HandAxe,
-	Stone, GoldOre, IronOre, Coal, Iron, GoldCoins,
-	Wine, Fish, //Resources (no educt needed to produce
-	Pig, Sausages, Skin, Leather, //Manufactured (from educts into products)
-	WoodenShield, IronShield, LeatherArmor, IronArmor, Sword, Lance, Halberd, Bow, Crossbow, Horse, // Used in Keep to make soldiers
-	Recruit,
-
-};
-
 UENUM(BlueprintType)
 enum class ESubjectType : uint8
 {
@@ -65,7 +50,7 @@ enum class ECraftingJobType : uint8
 //a simple struct that contains an item type and an int amount.
 //used eg in Recipes
 USTRUCT(BlueprintType)
-struct FItemAmount
+struct FItemAmount : public FTableRowBase
 {
 	GENERATED_BODY()
 
@@ -74,7 +59,7 @@ public:
 
 	//what item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EItem itemType;
+	FName itemType;
 
 	//amount of items
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -92,10 +77,6 @@ class WARRIORSANDSERFS_API UGlobals : public UObject
 public:
 	UGlobals();
 	~UGlobals();
-
-	//returns the (player-side) name of the item
-	UFUNCTION(BlueprintCallable, BlueprintPure)
-	static FString GetItemName(EItem item);
 
 	//returns the (player-side) name of the Subject
 	UFUNCTION(BlueprintCallable, BlueprintPure)

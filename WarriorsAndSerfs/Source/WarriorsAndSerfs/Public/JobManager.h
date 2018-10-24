@@ -10,6 +10,9 @@
 #include "GameFramework/Info.h"
 #include "JobManager.generated.h"
 
+
+#include "Engine/DataTable.h"
+
 /**
  * 
  */
@@ -52,7 +55,7 @@ public:
 	UJob* job;
 };
 
-//contains an itemype and a float priority. in Jobmanager there should be a list with one FItemPriority for every EItem. no other FItemPriorities should exist (permanently)
+//contains an itemype and a float priority. in Jobmanager there should be a list with one FItemPriority for every FName. no other FItemPriorities should exist (permanently)
 USTRUCT(BlueprintType)
 struct FItemPriority
 {
@@ -60,11 +63,11 @@ struct FItemPriority
 
 public:
 	FItemPriority();
-	FItemPriority(EItem item, float prio);
+	FItemPriority(FName item, float prio);
 
 	//what item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EItem itemType;
+	FName itemType;
 
 	//priority
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -85,7 +88,7 @@ public:
 
 	//sets variables for Job, >type< influences wether >employee< fills Source or Destination.
 	UFUNCTION(BlueprintCallable)
-	void InitJob(EJobType type, ALot* employee, EItem it, float prio);
+	void InitJob(EJobType type, ALot* employee, FName it, float prio);
 
 	//status of the job (unassigned, picking up item or delivering item)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -105,7 +108,7 @@ public:
 
 	//What Item the job is about Eg the Log requested by the sawmill, or the axe being pushed by the carpenter.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EItem item;
+	FName item;
 	
 	//How important this Job is (initially determined and set in MakeJob() then increased over time.)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -147,9 +150,13 @@ public:
 
 	//TODO improve - eg make player-editable (how?)
 	//This list contains the priority modifier for each item (affects jobPriority in MakeJob)
-	//this list should contain exactly one object for each EItem.
+	//this list should contain exactly one object for each FName.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FItemPriority> itemPriorities;
+
+	//This datatable is loaded at runtime and contains all items and info about them, such as their transport priority (which is used here)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UDataTable* dataTable;
 
 
 	///functions
@@ -175,16 +182,16 @@ public:
 
 	//returns the priority value of the item.
 	UFUNCTION(BlueprintCallable)
-	float GetItemPriority(EItem item);
+	float GetItemPriority(FName item);
 
 	//sets the itempriority for an item
 	UFUNCTION(BlueprintCallable)
-	void SetItemPriority(EItem item, float newPrio);
+	void SetItemPriority(FName item, float newPrio);
 
 	//returns a pullJob that requires the item.
 	//source is the Lot the request is coming from
 	//if none found, try FindFreeSpace()
-	UJob* FindPullJobForItem(ALot* source, EItem item);
+	UJob* FindPullJobForItem(ALot* source, FName item);
 	
 	//returns a pushJob that this Lot made; nullptr if none is found.
 	UJob* FindPushJobForLot(ALot* source);
@@ -192,16 +199,16 @@ public:
 	//you should try FindPullJobForItem() before this!
 	//returns a Lot that can fit the item (educt or warehouse).
 	//source is the Lot the request is coming from
-	ALot* FindFreeSpace(ALot* source, EItem item);
+	ALot* FindFreeSpace(ALot* source, FName item);
 
 	//returns a Lot that has this item to offer (product or warehouse).
 	//destination is the Lot the request is coming from
-	ALot* FindItem(ALot* destination, EItem item);
+	ALot* FindItem(ALot* destination, FName item);
 
 	//returns a lot that has an offered (but not active) push job for this item, meaning it has this item available...
 	//destination is the Lot this request is coming from.
 	//returns nullptr if no such Lot is found.
-	FLotWithJob* FindLotWithPushJob(ALot* destination, EItem item);
+	FLotWithJob* FindLotWithPushJob(ALot* destination, FName item);
 	
 	//Accepts the Job:
 	//Adds / Removes predicted item to target
@@ -214,7 +221,7 @@ public:
 
 	//called from a lot making a jobOffer.
 	UFUNCTION(BlueprintCallable)
-	UJob* MakeJob(EJobType jobType, ALot* employee, EItem item, float prio);
+	UJob* MakeJob(EJobType jobType, ALot* employee, FName item, float prio);
 	
 	//called from a serf looking for a job. 
 	//Checks the jobOffers List and searches for a suitable job.
@@ -258,5 +265,5 @@ public:
 	*returns a suitable job that has already been set to accepted.
 	*/
 	UFUNCTION(BlueprintCallable)
-	UJob* FindJobForItem(EItem item);
+	UJob* FindJobForItem(FName item);
 };
