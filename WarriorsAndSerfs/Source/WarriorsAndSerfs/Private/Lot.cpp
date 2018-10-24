@@ -71,7 +71,7 @@ void ALot::TakeDamage(float x)
 }
 
 
-FStockpile* ALot::GetStockpile(EItem item)
+FStockpile* ALot::GetStockpile(FName item)
 {
 	//find the right stockpile
 	int num = stockpiles.Num();
@@ -88,7 +88,7 @@ FStockpile* ALot::GetStockpile(EItem item)
 }
 
 //Returns wether this Lot HAS a stockpile of this type. calls GetStockpile. (GetStockpile cannot be used in BP so...)
-bool ALot::HasStockpile(EItem item)
+bool ALot::HasStockpile(FName item)
 {
 	if (GetStockpile(item) != nullptr)
 	{
@@ -100,14 +100,14 @@ bool ALot::HasStockpile(EItem item)
 
 
 //adds item of type item to both predicted and actual amount.
-void ALot::MakeItem(EItem item, int amount = 1)
+void ALot::MakeItem(FName item, int amount = 1)
 {
 	AddItem(item, amount);
 	AddPredictedItem(item, amount);
 }
 
 //removes item of type item from both predicted and actual amount.
-void ALot::DeleteItem(EItem item, int amount = 1)
+void ALot::DeleteItem(FName item, int amount = 1)
 {
 	RemoveItem(item, amount);
 	RemovePredictedItem(item, amount);
@@ -115,7 +115,7 @@ void ALot::DeleteItem(EItem item, int amount = 1)
 
 
 //adds amount items to the stockpile. Does not check if there is space!
-void ALot::AddItem(EItem item, int amount = 1)
+void ALot::AddItem(FName item, int amount = 1)
 {
 	FStockpile* pile = GetStockpile(item);
 	if (pile == nullptr || !pile)
@@ -150,7 +150,7 @@ void ALot::AddItem(EItem item, int amount = 1)
 }
 
 //removes amount items from the stockpile. Does not check if there are enough!
-void ALot::RemoveItem(EItem item, int amount = 1)
+void ALot::RemoveItem(FName item, int amount = 1)
 {
 	FStockpile* pile = GetStockpile(item);
 	if (pile == nullptr || !pile)
@@ -174,7 +174,7 @@ void ALot::RemoveItem(EItem item, int amount = 1)
 	UpdateActiveUI();
 }
 
-void ALot::AddStockpile(EItem item, EStockpileType type, int maxStorage)
+void ALot::AddStockpile(FName item, EStockpileType type, int maxStorage)
 {
 	FStockpile* pile = new FStockpile(item, type, maxStorage);
 	stockpiles.Add(*pile);
@@ -182,7 +182,7 @@ void ALot::AddStockpile(EItem item, EStockpileType type, int maxStorage)
 	UpdateActiveUI();
 }
 
-void ALot::RemoveStockpile(EItem item)
+void ALot::RemoveStockpile(FName item)
 {
 	//find the right stockpile
 	int num = stockpiles.Num();
@@ -276,7 +276,8 @@ void ALot::MakeJob(AJobManager* jManager)
 					fullnessPriority = 35;
 				}
 
-				float itemPriority = jobManager->GetItemPriority(pile->itemType);
+			//	float itemPriority = jobManager->GetItemPriority(pile->itemType);
+				float itemPriority = 0; //TODO FIX ASAP
 
 
 				finalPriority = fullnessPriority + itemPriority;
@@ -351,7 +352,7 @@ void ALot::IncreaseJobPriorities(float amount)
 
 //checks if this building has an offered (and not active) push job for an item
 //returns the job if one is found, else returns nullptr.
-UJob* ALot::HasPushJobForItem(EItem item, int amount)
+UJob* ALot::HasPushJobForItem(FName item, int amount)
 {
 	//check if any of my jobs are a pushjob for this item.
 	for (int i = 0; i < myJobs.Num(); i++)
@@ -379,7 +380,7 @@ UJob* ALot::HasPushJobForItem(EItem item, int amount)
 
 //checks if this building has an offered (and not active) pull job for an item
 //returns the job if one is found, else returns nullptr.
-UJob* ALot::HasPullJobForItem(EItem item, int amount)
+UJob* ALot::HasPullJobForItem(FName item, int amount)
 {
 	//check if any of my jobs are a pulljob for this item.
 	for (int i = 0; i < myJobs.Num(); i++)
@@ -409,7 +410,7 @@ UJob* ALot::HasPullJobForItem(EItem item, int amount)
 //checks if this building has an item there (eg in order to be picked up)
 //will only attempt to get item from non-educt stockpile
 //returns true only if predictedStock and currentStock are high enough!
-bool ALot::ItemAvailable(EItem item, int amount)
+bool ALot::ItemAvailable(FName item, int amount)
 {
 	FStockpile* pile = GetStockpile(item);
 	
@@ -448,7 +449,7 @@ bool ALot::ItemAvailable(EItem item, int amount)
 //checks if this building has an item there (eg in order to be picked up)
 //however this function will also return true for educt stockpiles! (used eg for education buildings)
 //returns true only if both precictedStock and currentStock are high enough!
-bool ALot::HasItemStored(EItem item, int amount)
+bool ALot::HasItemStored(FName item, int amount)
 {
 	FStockpile* pile = GetStockpile(item);
 
@@ -485,7 +486,7 @@ bool ALot::HasItemStored(EItem item, int amount)
 //checks if this building has enough space for these items 
 //will only attempt to fit item into non-product stockpile
 //returns true only if precictedStock and currentStock are low enough!
-bool ALot::CanFitItem(EItem item, int amount)
+bool ALot::CanFitItem(FName item, int amount)
 {
 	FStockpile* pile = GetStockpile(item);
 	if (pile == nullptr || !pile)
@@ -507,7 +508,7 @@ bool ALot::CanFitItem(EItem item, int amount)
 //like CanFitItem, checks if this building has enough space for these items 
 //however this function will also return true for product stockpiles! (used eg for harvesting buildings)
 //returns true only if precictedStock and currentStock are low enough!
-bool ALot::SpaceForItem(EItem item, int amount)
+bool ALot::SpaceForItem(FName item, int amount)
 {
 	FStockpile* pile = GetStockpile(item);
 	if (pile == nullptr || !pile)
@@ -527,7 +528,7 @@ bool ALot::SpaceForItem(EItem item, int amount)
 
 //removes this item from the predicted stockpile
 //CHECK IF POSSIBLE by using ItemAvailable before this!
-void ALot::RemovePredictedItem(EItem item, int amount)
+void ALot::RemovePredictedItem(FName item, int amount)
 {
 	FStockpile* pile = GetStockpile(item);
 	if (pile == nullptr || !pile)
@@ -548,13 +549,13 @@ void ALot::RemovePredictedItem(EItem item, int amount)
 
 //adds this item to the predicted stockpile
 //CHECK IF POSSIBLE by using CanFitItem before this!
-void ALot::AddPredictedItem(EItem item, int amount)
+void ALot::AddPredictedItem(FName item, int amount)
 {
 	FStockpile* pile = GetStockpile(item);
 	if (pile == nullptr || !pile)
 	{
 		//no stockpile of this item type in this building.
-		playerLabel = UGlobals::GetItemName(item);
+		//playerLabel = UGlobals::GetItemName(item);
 		printCritical("ERROR: Tried to add Predicted item but didn't have stockpile!!");
 		return;
 	}
@@ -582,13 +583,13 @@ void ALot::AddPredictedItem(EItem item, int amount)
 
 FStockpile::FStockpile()
 { 
-	itemType = EItem::MissingNo;
+	itemType = "MissingNo";
 	maxStorage = 0;
 	currentStored = 0;
 	currentPredicted = 0;
 }
 
-FStockpile::FStockpile(EItem type, EStockpileType pileType, int maxStore)
+FStockpile::FStockpile(FName type, EStockpileType pileType, int maxStore)
 {
 	itemType = type;
 	stockpileType = pileType;

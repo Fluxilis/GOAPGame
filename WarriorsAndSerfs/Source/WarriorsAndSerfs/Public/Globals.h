@@ -74,7 +74,7 @@ public:
 
 	//what item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EItem itemType;
+	FName itemType;
 
 	//amount of items
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

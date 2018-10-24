@@ -32,11 +32,25 @@ FItemPriority::FItemPriority(EItem item, float prio)
 }
 
 
+FDTS_Item::FDTS_Item()
+{
+}
+
+FDTS_Item::FDTS_Item(FText cDisplayName, int cOrderInLists, FText cHelpText, FString cIcon, FString cMesh, int cItemPriority)
+{
+	DisplayName = cDisplayName;
+	OrderInLists = cOrderInLists;
+	HelpText = cHelpText;
+	Icon = cIcon;
+	Mesh = cMesh;
+	ItemPriority = cItemPriority;
+}
+
 UJob::UJob()
 {}
 
 //Call after creating a new job.
-void UJob::InitJob(EJobType type, ALot* employee, EItem it, float prio)
+void UJob::InitJob(EJobType type, ALot* employee, FName it, float prio)
 {
 	jobType = type;
 	item = it;
@@ -244,7 +258,7 @@ void AJobManager::RemoveJobs(ALot* lot)
 //Creates a new Job and inits it's vars
 //adds job to JobOffers, as well as the employee's myJobs.
 //handles predicted items of employee, depending on jobType.
-UJob* AJobManager::MakeJob(EJobType jobType, ALot* employee, EItem item, float prio)
+UJob* AJobManager::MakeJob(EJobType jobType, ALot* employee, FName item, float prio)
 {
 	UJob* job;
 	job = NewObject<UJob>();
@@ -751,7 +765,7 @@ dump in a warehouse.
 *called by serfs after their job has been found invalid while carrying an item (eg if their destination building was destroyed)
 *returns a suitable job that has already been set to accepted.
 */
-UJob* AJobManager::FindJobForItem(EItem item)
+UJob* AJobManager::FindJobForItem(FName item)
 {
 	//Try to fullfill a pulljob
 
@@ -972,7 +986,7 @@ void AJobManager::SetItemPriority(EItem item, float newPrio)
 //returns the closest pullJob that requires the item, nullptr if none is found.
 //source is the Lot the request is coming from 
 //(if none found, I suggest to try FindFreeSpace())
-UJob* AJobManager::FindPullJobForItem(ALot* source, EItem item)
+UJob* AJobManager::FindPullJobForItem(ALot* source, FName item)
 {
 	UJob* chosenJob = nullptr;
 	float chosenJobDistance = MAX_JOB_DISTANCE;
@@ -1076,7 +1090,7 @@ UJob* AJobManager::FindPushJobForLot(ALot* source)
 //returns the closest Lot that can fit (predicted and actual) the item (educt or warehouse), nullptr if none is found.
 //prefers only selects a warehouse if no suitable other lot is found.
 //source is the Lot the request is coming from
-ALot* AJobManager::FindFreeSpace(ALot* source, EItem item)
+ALot* AJobManager::FindFreeSpace(ALot* source, FName item)
 {
 	ALot* chosenLot = nullptr;
 	float chosenLotDistance = MAX_JOB_DISTANCE;
@@ -1188,7 +1202,7 @@ ALot* AJobManager::FindFreeSpace(ALot* source, EItem item)
 
 //returns the closest Lot that has this item to offer (product or warehouse), nullptr if none is found.
 //destination is the Lot the request is coming from
-ALot* AJobManager::FindItem(ALot* destination, EItem item)
+ALot* AJobManager::FindItem(ALot* destination, FName item)
 {
 	ALot* chosenLot = nullptr;
 	float chosenLotDistance = MAX_JOB_DISTANCE;
@@ -1242,7 +1256,7 @@ ALot* AJobManager::FindItem(ALot* destination, EItem item)
 //returns the closest lot that has an offered (but not active) push job for this item, meaning it has this item available...
 //destination is the Lot this request is coming from.
 //returns nullptr if no such Lot is found.
-FLotWithJob* AJobManager::FindLotWithPushJob(ALot* destination, EItem item)
+FLotWithJob* AJobManager::FindLotWithPushJob(ALot* destination, FName item)
 {
 	FLotWithJob* chosenFLot = nullptr;
 	float chosenFLotDistance = MAX_JOB_DISTANCE;
