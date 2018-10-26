@@ -276,8 +276,8 @@ void ALot::MakeJob(AJobManager* jManager)
 					fullnessPriority = 35;
 				}
 
-			//	float itemPriority = jobManager->GetItemPriority(pile->itemType);
-				float itemPriority = 0; //TODO FIX ASAP
+				float itemPriority = jobManager->GetItemPriority(pile->itemType);
+			//	float itemPriority = 0; //TODO FIX ASAP
 
 
 				finalPriority = fullnessPriority + itemPriority;

@@ -56,25 +56,6 @@ public:
 	UJob* job;
 };
 
-//contains an itemype and a float priority. in Jobmanager there should be a list with one FItemPriority for every EItem. no other FItemPriorities should exist (permanently)
-USTRUCT(BlueprintType)
-struct FItemPriority
-{
-	GENERATED_BODY()
-
-public:
-	FItemPriority();
-	FItemPriority(EItem item, float prio);
-
-	//what item
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EItem itemType;
-
-	//priority
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float priority;
-};
-
 //struct for item datatables
 USTRUCT(BlueprintType)
 struct FDTS_Item : public FTableRowBase
@@ -257,15 +238,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ALot*> lots;
 
-	//TODO improve - eg make player-editable (how?)
-	//This list contains the priority modifier for each item (affects jobPriority in MakeJob)
-	//this list should contain exactly one object for each EItem.
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FItemPriority> itemPriorities;
-
 	//This datatable is loaded at runtime and contains all items and info about them, such as their transport priority (which is used here)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		UDataTable* dataTable;
+		UDataTable* itemsDataTable;
 
 	///functions
 
@@ -290,11 +265,8 @@ public:
 
 	//returns the priority value of the item.
 	UFUNCTION(BlueprintCallable)
-	float GetItemPriority(EItem item);
+	float GetItemPriority(FName item);
 
-	//sets the itempriority for an item
-	UFUNCTION(BlueprintCallable)
-	void SetItemPriority(EItem item, float newPrio);
 
 	//returns a pullJob that requires the item.
 	//source is the Lot the request is coming from

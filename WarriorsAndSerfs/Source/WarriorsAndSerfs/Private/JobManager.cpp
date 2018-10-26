@@ -20,18 +20,6 @@ FLotWithJob::FLotWithJob(ALot* theLot, UJob* theJob)
 	job = theJob;
 }
 
-
-FItemPriority::FItemPriority()
-{
-}
-
-FItemPriority::FItemPriority(EItem item, float prio)
-{
-	itemType = item;
-	priority = prio;
-}
-
-
 FDTS_Item::FDTS_Item()
 {
 }
@@ -911,69 +899,22 @@ UJob* AJobManager::FindJobForItem(FName item)
 
 void AJobManager::InitItemPriorities()
 {
-	itemPriorities.Add(FItemPriority(EItem::GoldCoins, 250));
+	FName itemsDataTablePath = "DataTable'/Game/WnSAssets/Data/Items/DT_Items.DT_Items'";
+	itemsDataTable = Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), NULL, *itemsDataTablePath.ToString()));
 
-	itemPriorities.Add(FItemPriority(EItem::Bread, 200));
-	itemPriorities.Add(FItemPriority(EItem::Fish, 199));
-	itemPriorities.Add(FItemPriority(EItem::Sausages, 198));
-	itemPriorities.Add(FItemPriority(EItem::Wine, 197));
-
-	itemPriorities.Add(FItemPriority(EItem::Wheat, 101));
-	itemPriorities.Add(FItemPriority(EItem::Flour, 100));
-
-	itemPriorities.Add(FItemPriority(EItem::GoldOre, 75));
-	itemPriorities.Add(FItemPriority(EItem::Coal, 75));
-
-	itemPriorities.Add(FItemPriority(EItem::Lumber, 70));
-	itemPriorities.Add(FItemPriority(EItem::Log, 65));
-	itemPriorities.Add(FItemPriority(EItem::Stone, 64));
-
-	itemPriorities.Add(FItemPriority(EItem::HandAxe, 40));
-	itemPriorities.Add(FItemPriority(EItem::Iron, 39));
-	itemPriorities.Add(FItemPriority(EItem::IronOre, 38));
+	if (itemsDataTable == nullptr || !itemsDataTable)
+	{
+		printCritical("JobManager InitItemPriorities did not find Datatable!");
+	}
 }
 
 //returns the priority value of the item.
-float AJobManager::GetItemPriority(EItem item)
+float AJobManager::GetItemPriority(FName item)
 {
-	for (int i = 0; i < itemPriorities.Num(); i++)
-	{
-		if (itemPriorities[i].itemType == item)
-		{
-			return itemPriorities[i].priority;
-		}
-	}
+	FDTS_Item* row = itemsDataTable->FindRow<FDTS_Item>(item, TEXT(""));
 
-	//if not returned yet, didn't find a priority for that item, that is a human error!
-	//to keep playing, create an item priority for that item and return that.
-	//notify.
-
-	printCritical("NO ITEM PRIORITY FOUND FOR AN ITEM! (trying to get)");
-
-	itemPriorities.Add(FItemPriority(item, 50));
-	return 50.0;
+	return row->ItemPriority;
 }
-
-//sets the itempriority for an item
-void AJobManager::SetItemPriority(EItem item, float newPrio)
-{
-	for (int i = 0; i < itemPriorities.Num(); i++)
-	{
-		if (itemPriorities[i].itemType == item)
-		{
-			itemPriorities[i].priority = newPrio;
-		}
-	}	
-
-	//if not returned yet, didn't find a priority for that item, that is a human error!
-	//to keep playing, create an item priority for that item and return that.
-	//notify.
-
-	printCritical("NO ITEM PRIORITY FOUND FOR AN ITEM! (trying to set)");
-
-	itemPriorities.Add(FItemPriority(item, newPrio));
-}
-
 
 ///Helper functions
 
