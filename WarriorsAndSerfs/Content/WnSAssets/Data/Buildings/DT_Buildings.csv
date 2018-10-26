@@ -1,5 +1,5 @@
 Name,DisplayName,OrderInLists,MaxHealth,WhoWorksHere,PullJobLimit,PushJobLimit,ConstructionRecipe,Stockpiles,HarvestAreaRadius,HarvestAreaMaxDist,HarvestRecipeList,CraftingRecipeList,HelpText,BlueprintClass,Icon,Mesh,Special(?? school? Palace?),TUTORIALS!?,Color Explanations (For all Sheets),0,0,0
-Woodcutters,Woodcutter's,1,150,Lumberjack,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=Log,stockpileType=Product,maxStorage=5))",1000,1500,"((products=((itemType=Log,amount=1)),polishDuration=4,interactEnvType=Tree))",#N/A,"The Lumberjack operates from this house, to cut down trees in the area you specified.
+Woodcutters,Woodcutter's,1,150,Lumberjack,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=Log,stockpileType=Product,maxStorage=5))",1000,1500,"((products=((itemType=Log,amount=2)),polishDuration=4,interactEnvType=Tree))",#N/A,"The Lumberjack operates from this house, to cut down trees in the area you specified.
 
 Produces Logs.
 
