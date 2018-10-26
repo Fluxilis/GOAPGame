@@ -3,6 +3,11 @@
 #include "HarvestingComponent.h"
 
 
+FHarvestingRecipe::FHarvestingRecipe()
+{
+
+}
+
 // Sets default values for this component's properties
 UHarvestingComponent::UHarvestingComponent()
 {

@@ -4,6 +4,9 @@
 
 #include "Lot.h"
 #include "Subject.h"
+#include "ConstructionComponent.h"
+#include "HarvestingComponent.h"
+#include "CraftingComponent.h"
 
 #include "Engine/DataTable.h"
 
@@ -72,6 +75,7 @@ public:
 	float priority;
 };
 
+//struct for item datatables
 USTRUCT(BlueprintType)
 struct FDTS_Item : public FTableRowBase
 {
@@ -79,7 +83,6 @@ struct FDTS_Item : public FTableRowBase
 
 public:
 	FDTS_Item();
-	FDTS_Item(FText cDisplayName, int cOrderInLists, FText cHelpText, FString cIcon, FString cMesh, int cItemPriority);
 
 	//what the player sees as item name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -104,6 +107,80 @@ public:
 	//transport priority of the item
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int ItemPriority;
+};
+
+//struct for building datatables
+USTRUCT(BlueprintType)
+struct FDTS_Building: public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FDTS_Building();
+
+	//what the player sees as building name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FText DisplayName;
+
+	//where in lists (eg building browser button) this building should be displayed
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int OrderInLists;
+
+	//max health of this building
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float MaxHealth;
+
+	//what kind of subject works in this building
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		ESubjectType WhoWorksHere;
+
+	//How many Pulljobs this building may create per stockpile
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int PullJobLimit;
+
+	//How many Pushjobs this building may create per stockpile
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int PushJobLimit;
+
+	//Items and hits needed to construct the building
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FConstructionRecipe ConstructionRecipe;
+
+	//The Stockpiles this building has
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<FStockpile> Stockpiles;
+	
+	//radius of harvesting area (if it has one)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float HarvestAreaRadius;
+
+	//how far harvesting area can be from the door (if it has one)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float HarvestAreaMaxDist;
+
+	//The possible Harvest Recipes for this building (if it is a harvesting Building)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<FHarvestingRecipe> HarvestRecipeList;
+
+	//The possible Crafting Recipes for this building (if it is a crafting Building)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<FCraftingRecipe> CraftingRecipeList;
+
+	//help text the player can read (eg tooltip, info button)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FText HelpText;
+
+	//name of the icon asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString BlueprintClass;
+
+	//name of the icon asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString Icon;
+
+	//name of the 3dMesh asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString Mesh;
 };
 
 

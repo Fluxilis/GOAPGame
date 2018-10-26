@@ -11,14 +11,12 @@
 
 
 //Most buildings use a recipe to turn an item into another (eg 1 log -> 2 planks)
-//These recipies will be saved in xml?
-//TODO if these recipies are in xml, I can remove the UPROPERTY tags.
 USTRUCT(BlueprintType)
-struct FRecipe
+struct FCraftingRecipe
 {
 	GENERATED_BODY()
 public:
-	FRecipe();
+	FCraftingRecipe();
 
 	//"ingredients", what items are needed to start this recipe.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -61,7 +59,7 @@ public:
 
 	//what recipe this building is currently using
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FRecipe currentRecipe;
+	FCraftingRecipe currentRecipe;
 
 	//how many recipies this building has completed in their life.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -83,12 +81,12 @@ public:
 
 	//Check if the recipe can be started
 	UFUNCTION(BlueprintCallable)
-	bool CanStartRecipe(FRecipe recipe);
+	bool CanStartRecipe(FCraftingRecipe recipe);
 
 
 	//attempts starting production using recipe.
 	UFUNCTION(BlueprintCallable)
-	void StartRecipe(FRecipe recipe);
+	void StartRecipe(FCraftingRecipe recipe);
 
 	//adds products to stockpile and resets building
 	UFUNCTION(BlueprintCallable)

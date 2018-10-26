@@ -10,6 +10,26 @@
 #include "HarvestingComponent.generated.h"
 
 
+//Many buildings harvest from the environment and produce items from it.
+USTRUCT(BlueprintType)
+struct FHarvestingRecipe
+{
+	GENERATED_BODY()
+public:
+	FHarvestingRecipe();
+
+	//what interactable Environment type you need (eg trees for Woodcutting, Coal Ore for coal mining)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		EInteractEnvType interactEnvType;
+
+	//what you get from finishing this recipe
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<FItemAmount> products;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float polishDuration; //how many seconds this recipe needs to complete
+};
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class WARRIORSANDSERFS_API UHarvestingComponent : public UActorComponent
 {

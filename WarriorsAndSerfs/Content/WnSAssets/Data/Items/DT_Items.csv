@@ -58,20 +58,28 @@ Wine,Wine,12,"Fermented Grape juice, sometimes referred to blood of the gods.
 
 Made in the Vineyard.
 
-Delivered to the Inn to feed your citizens.",default,default,197
+Delivered to the Inn to feed your citizens.",defaultIcon,default,197
 HandAxe,Hand Axe,13,"A small axe sharp enough to disarm a man.
 
 Made in Weapons workshop from Lumber.
 
 Used in construction of the Palace.",handAxeIcon,default,40
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
-,0,0,missing Info,default,default,50
+Fish,Fish,14,"Sweetwater fish, freshly caught.
+
+Caught in the Fisher's Hut.
+
+Delivered to the Inn to feed your citizens.",defaultIcon,default,199
+Sausages,Sausages,15,"Pork Sausages, a hearty meal.
+
+Made at the Butcher's from Pigs.
+
+Delivered to the Inn to feed your citizens.",defaultIcon,default,198
+,0,0,missing Info,defaultIcon,default,50
+,0,0,missing Info,defaultIcon,default,50
+,0,0,missing Info,defaultIcon,default,50
+,0,0,missing Info,defaultIcon,default,50
+,0,0,missing Info,defaultIcon,default,50
+,0,0,missing Info,defaultIcon,default,50
+,0,0,missing Info,defaultIcon,default,50
+,0,0,missing Info,defaultIcon,default,50
+,0,0,missing Info,defaultIcon,default,50

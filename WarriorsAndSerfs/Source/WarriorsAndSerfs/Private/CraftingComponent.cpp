@@ -1,10 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CraftingComponent.h"
-#include "TimerManager.h"
 
 
-FRecipe::FRecipe()
+FCraftingRecipe::FCraftingRecipe()
 {
 
 }
@@ -44,7 +43,7 @@ void UCraftingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 
 
 //returns whether the building has enough ressources for this recipe.
-bool UCraftingComponent::CanStartRecipe(FRecipe recipe)
+bool UCraftingComponent::CanStartRecipe(FCraftingRecipe recipe)
 {
 	//needs someone working to craft.
 	if (!isStaffed)
@@ -103,7 +102,7 @@ bool UCraftingComponent::CanStartRecipe(FRecipe recipe)
 
 //tries to start the recipe. 
 //if not enough items in stockpile, does not start.
-void UCraftingComponent::StartRecipe(FRecipe recipe)
+void UCraftingComponent::StartRecipe(FCraftingRecipe recipe)
 {
 	if (!CanStartRecipe(recipe))
 	{

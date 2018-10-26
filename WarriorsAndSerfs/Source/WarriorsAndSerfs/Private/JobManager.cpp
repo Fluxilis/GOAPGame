@@ -36,14 +36,8 @@ FDTS_Item::FDTS_Item()
 {
 }
 
-FDTS_Item::FDTS_Item(FText cDisplayName, int cOrderInLists, FText cHelpText, FString cIcon, FString cMesh, int cItemPriority)
+FDTS_Building::FDTS_Building()
 {
-	DisplayName = cDisplayName;
-	OrderInLists = cOrderInLists;
-	HelpText = cHelpText;
-	Icon = cIcon;
-	Mesh = cMesh;
-	ItemPriority = cItemPriority;
 }
 
 UJob::UJob()

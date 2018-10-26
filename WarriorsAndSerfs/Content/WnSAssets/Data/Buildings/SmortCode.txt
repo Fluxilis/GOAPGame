@@ -169,15 +169,15 @@ Display RecipeList in EXPORT Sheet
 Harvest Recipes:
 --------------------------------------------------------------------------------------------------
 
-=IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2));NOT(ISBLANK(E2)));
-	"(products=((itemType="&D2&",amount="&E2&")"
-	&IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2)));
-		",(itemType="&F2&",amount="&G2&")"
-		&IF(AND(NOT(ISBLANK(H2));NOT(ISBLANK(I2)));
-			",(itemType="&H2&",amount="&I2&"))";
+=IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2));NOT(ISBLANK(E2));NOT(ISBLANK(F2)));
+	"(products=((itemType="&E2&",amount="&F2&")"
+	&IF(AND(NOT(ISBLANK(G2));NOT(ISBLANK(H2)));
+		",(itemType="&G2&",amount="&H2&")"
+		&IF(AND(NOT(ISBLANK(I2));NOT(ISBLANK(J2)));
+			",(itemType="&I2&",amount="&J2&"))";
 			")")
 		;")")
-	&",polishDuration="&C2&")"
+	&",polishDuration="&D2&",interactEnvType="&C2&")"
 	;"")
 
 --------------------------------------------------------------------------------------------------
