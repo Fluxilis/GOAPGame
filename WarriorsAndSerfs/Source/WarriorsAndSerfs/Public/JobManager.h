@@ -164,6 +164,56 @@ public:
 		FString Mesh;
 };
 
+//struct for harvestables (aka InteractableEnvironment) datatables
+USTRUCT(BlueprintType)
+struct FDTS_Harvestable : public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FDTS_Harvestable();
+
+	//what the player sees as Harvestable name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FText DisplayName;
+
+	//where in lists (eg stats?) this Harvestable should be displayed
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int OrderInLists;
+
+	//help text the player can read (eg tooltip, info button)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FText HelpText;
+
+	//name of the icon asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString Icon;
+
+	//name of the 3dMesh asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString Mesh;
+
+	//How long this Harvestable takes to grow, at least
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float TimeUntilGrownMin;
+
+	//How long this Harvestable takes to grow, at most
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float TimeUntilGrownMax;
+
+	//Wether this Harvestable grows at all
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool CanGrow;
+
+	//How many items can be won from this Harvestable.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int MaxResourceAmount;
+
+	//How long this Harvestable lives, once it has fully grown. (eg Wheat decays)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float Lifetime;
+};
+
 
 //Jobs are transport tasks that need serfs to execute.
 //Jobs can be roughly divided in Pull and Push Jobs, pull Jobs want to receive an item, while pus Jobs want to get rid of an item in stockpile.

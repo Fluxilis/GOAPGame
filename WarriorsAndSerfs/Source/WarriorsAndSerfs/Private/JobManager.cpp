@@ -28,6 +28,10 @@ FDTS_Building::FDTS_Building()
 {
 }
 
+FDTS_Harvestable::FDTS_Harvestable()
+{
+}
+
 UJob::UJob()
 {}
 
