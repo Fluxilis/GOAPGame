@@ -32,6 +32,10 @@ FDTS_Harvestable::FDTS_Harvestable()
 {
 }
 
+FDTS_Subject::FDTS_Subject()
+{
+}
+
 UJob::UJob()
 {}
 

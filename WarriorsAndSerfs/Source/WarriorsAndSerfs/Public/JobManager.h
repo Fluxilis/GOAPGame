@@ -56,6 +56,8 @@ public:
 	UJob* job;
 };
 
+//All of these FDTS structs should not be here, but rather in globals, but when I tried it, I had an issue where the compiler didn't recognize the ELotType Enum in ALot (Lot.h) anymore, so I rolled back the changes.
+
 //struct for item datatables
 USTRUCT(BlueprintType)
 struct FDTS_Item : public FTableRowBase
@@ -193,6 +195,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FString Mesh;
 
+	//name of the blueprint class asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString BlueprintClass;
+
 	//How long this Harvestable takes to grow, at least
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float TimeUntilGrownMin;
@@ -212,6 +218,44 @@ public:
 	//How long this Harvestable lives, once it has fully grown. (eg Wheat decays)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float Lifetime;
+};
+
+//struct for subject datatables
+USTRUCT(BlueprintType)
+struct FDTS_Subject : public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FDTS_Subject();
+
+	//what the player sees as Subject Name (/Job Title)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FText DisplayName;
+
+	//where in lists (eg stats?) this Subject Type should be displayed
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int OrderInLists;
+
+	//how much health this subject type has
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float MaxHealth;
+
+	//help text the player can read (eg tooltip, info button)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FText HelpText;
+
+	//name of the icon asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString Icon;
+
+	//name of the 3dMesh asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString Mesh;
+
+	//name of the blueprint class asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString BlueprintClass;
 };
 
 

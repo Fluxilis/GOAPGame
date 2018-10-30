@@ -1,93 +1,93 @@
 Name,DisplayName,OrderInLists,MaxHealth,WhoWorksHere,PullJobLimit,PushJobLimit,ConstructionRecipe,Stockpiles,HarvestAreaRadius,HarvestAreaMaxDist,HarvestRecipeList,CraftingRecipeList,HelpText,BlueprintClass,Icon,Mesh,Special(?? school? Palace?),TUTORIALS!?,Color Explanations (For all Sheets),0,0,0
-Woodcutters,Woodcutter's,1,150,Lumberjack,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=Log,stockpileType=Product,maxStorage=5))",1000,1500,"((products=((itemType=Log,amount=2)),polishDuration=4,interactEnvType=Tree))",#N/A,"The Lumberjack operates from this house, to cut down trees in the area you specified.
+Woodcutters,Woodcutter's,1,150,Lumberjack,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=Log,stockpileType=Product,maxStorage=5))",1000,1500,"((products=((itemType=Log,amount=1)),polishDuration=4,interactEnvType=Tree))",#N/A,"The Lumberjack operates from this house, to cut down trees in the area you specified.
 
 Produces Logs.
 
-A lumberjack needs to work in the woodcutters'.",BP_Woodcutter's,woodcuttersIcon,default,,,,,,
+A lumberjack needs to work in the woodcutters'.",Woodcutters,woodcuttersIcon,default,,,,,,
 Sawmill,Sawmill,2,200,Carpenter,3,1,"(materials=((itemType=Lumber,amount=2),(itemType=Stone,amount=2)),builderHits=35)","((itemType=Log,stockpileType=Educt,maxStorage=5),(itemType=Lumber,stockpileType=Product,maxStorage=7))",0,0,#N/A,"((educts=((itemType=Log,amount=1)),products=((itemType=Lumber,amount=2)),craftDuration=3))","In the sawmill, the carpenter saws logs into useable wooden planks.
 
 Requires Logs.
 Produces Lumber
 
-A carpenter needs to work in the sawmill.",BP_Sawmill,sawmillIcon,default,,,,,,
+A carpenter needs to work in the sawmill.",Sawmill,sawmillIcon,default,,,,,,
 Bakery,Bakery,6,250,Baker,3,1,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)","((itemType=Flour,stockpileType=Educt,maxStorage=5),(itemType=Bread,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=Flour,amount=1)),products=((itemType=Bread,amount=1)),craftDuration=5))","The bakery houses a large furnace in which the baker bakes his delicious bread.
 
 Requires Flour.
 Produces Bread.
 
-A baker needs to work in the bakery.",BP_Bakery,bakeryIcon,default,,,,,,
+A baker needs to work in the bakery.",Bakery,bakeryIcon,default,,,,,,
 Coalmine,Coalmine,9,150,Miner,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=Coal,stockpileType=Product,maxStorage=4))",1000,1500,"((products=((itemType=Coal,amount=1)),polishDuration=3,interactEnvType=Coalmine))",#N/A,"The Miner operates from this house, to mine coal from coal deposits in the area you specified.
 
 Requires nearby coal deposit.
 Produces Coal.
 
-A miner needs to work in the coalmine.",BP_Coalmine,coalmineIcon,default,,,,,,
+A miner needs to work in the coalmine.",Coalmine,coalmineIcon,default,,,,,,
 Farm,Farm,4,225,Farmer,0,1,"(materials=((itemType=Lumber,amount=5),(itemType=Stone,amount=2),(itemType=Log,amount=2)),builderHits=45)","((itemType=Wheat,stockpileType=Product,maxStorage=5))",500,1000,"((products=((itemType=Wheat,amount=1)),polishDuration=3,interactEnvType=Wheat))",#N/A,"The farmer operates from this house, to plant and harvest wheat in the area you specified.
 
 Produces Grain.
 
-A farmer needs to work on the farm.",BP_Farm,farmIcon,default,,,,,,
+A farmer needs to work on the farm.",Farm,farmIcon,default,,,,,,
 ForestingLodge,Foresting Lodge,3,200,Forester,0,0,"(materials=((itemType=Lumber,amount=2),(itemType=Stone,amount=2)),builderHits=35)",#N/A,800,1500,#N/A,#N/A,"The Forester operates from this house, to plant trees in the area you specified.
 
-A forester needs to work in the foresting lodge.",BP_ForestingLodge,forestingLodgeIcon,default,,,,,,
+A forester needs to work in the foresting lodge.",ForestingLodge,forestingLodgeIcon,default,,,,,,
 Goldmine,Goldmine,10,150,Miner,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=GoldOre,stockpileType=Product,maxStorage=4))",1000,1500,"((products=((itemType=GoldOre,amount=1)),polishDuration=2,interactEnvType=Goldmine))",#N/A,"The Miner operates from this house, to mine gold ore from gold veins in the area you specified.
 
 Requires nearby gold vein.
 Produces Gold Ore.
 
-A miner needs to work in the goldmine.",BP_Goldmine,goldmineIcon,default,,,,,,
+A miner needs to work in the goldmine.",Goldmine,goldmineIcon,default,,,,,,
 Inn,Inn,15,350,None,5,0,"(materials=((itemType=Lumber,amount=5),(itemType=Stone,amount=7)),builderHits=90)","((itemType=Bread,stockpileType=Educt,maxStorage=5),(itemType=Wine,stockpileType=Educt,maxStorage=5),(itemType=Fish,stockpileType=Educt,maxStorage=5),(itemType=Sausages,stockpileType=Educt,maxStorage=5))",0,0,#N/A,#N/A,"When a citizen is hungry, they will go to the Inn to eat, so make sure you always have enough food!
 
 Requires Bread, Fish, Wine or Sausages.
 
-No one needs to work at the Inn.",BP_Inn,innIcon,default,,,,,,
+No one needs to work at the Inn.",Inn,innIcon,default,,,,,,
 Ironmine,Ironmine,12,150,Miner,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=IronOre,stockpileType=Product,maxStorage=4))",1000,1500,"((products=((itemType=IronOre,amount=1)),polishDuration=2,interactEnvType=Ironmine))",#N/A,"The Miner operates from this house, to mine iron ore from iron veins in the area you specified.
 
 Requires nearby iron vein.
 Produces iron ore.
 
-A miner needs to work in the ironmine.",BP_Ironmine,ironmineIcon,default,,,,,,
+A miner needs to work in the ironmine.",Ironmine,ironmineIcon,default,,,,,,
 IronSmeltery,Iron Smeltery,13,275,Smelter,2,1,"(materials=((itemType=Lumber,amount=2),(itemType=Stone,amount=5)),builderHits=60)","((itemType=IronOre,stockpileType=Educt,maxStorage=5),(itemType=Coal,stockpileType=Educt,maxStorage=5),(itemType=Iron,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=IronOre,amount=1),(itemType=Coal,amount=1)),products=((itemType=Iron,amount=1)),craftDuration=8))","In the Iron Smeltery, the smelter melts iron ore into Iron bars, using coal.
 
 Requires iron ore, coal.
 Produces iron bar.
 
-A smelter needs to work in the iron smeltery.",BP_IronSmeltery,ironSmelteryIcon,default,,,,,,
+A smelter needs to work in the iron smeltery.",IronSmeltery,ironSmelteryIcon,default,,,,,,
 Mill,Mill,5,250,Miller,3,1,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)","((itemType=Wheat,stockpileType=Educt,maxStorage=5),(itemType=Flour,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=Wheat,amount=1)),products=((itemType=Flour,amount=1)),craftDuration=6))","The mill uses the power of the wind to turn its massive Grindstone, grinding down Grain to fine dust.
 
 Requires Grain.
 Produces Flour.
 
-A miller needs to work in the mill.",BP_Mill,millIcon,default,,,,,,
+A miller needs to work in the mill.",Mill,millIcon,default,,,,,,
 Mint,Mint,11,275,Smelter,2,1,"(materials=((itemType=Lumber,amount=2),(itemType=Stone,amount=5)),builderHits=60)","((itemType=GoldOre,stockpileType=Educt,maxStorage=5),(itemType=Coal,stockpileType=Educt,maxStorage=5),(itemType=GoldCoins,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=GoldOre,amount=1),(itemType=Coal,amount=1)),products=((itemType=GoldCoins,amount=1)),craftDuration=8))","In the Mint, the smelter melts gold ore into gold coins, using coal.
 
 Requires gold ore, coal.
 Produces gold coins.
 
-A smelter needs to work in the mint.",BP_Mint,mintIcon,default,,,,,,
+A smelter needs to work in the mint.",Mint,mintIcon,default,,,,,,
 Palace,Palace,17,2000,None,3,1,"(materials=((itemType=Lumber,amount=150),(itemType=Stone,amount=200),(itemType=GoldCoins,amount=100),(itemType=Iron,amount=75),(itemType=HandAxe,amount=50)),builderHits=3500)","((itemType=Handaxe,stockpileType=Educt,maxStorage=100),(itemType=Iron,stockpileType=Educt,maxStorage=1000))",0,0,#N/A,#N/A,"A Palace is the ultimate demonstration of wealth and power.
 
 It is a truly collossal undertaking to construct a palace.
-Constructing the palace wins the game.",BP_Palace,palaceIcon,default,,,,,,
+Constructing the palace wins the game.",Palace,palaceIcon,default,,,,,,
 Quarry,Quarry,8,200,Mason,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=Stone,stockpileType=Product,maxStorage=7))",1000,1500,"((products=((itemType=Stone,amount=2)),polishDuration=6,interactEnvType=Stone))",#N/A,"The Mason operates from this house, to mine granite in the area you specified.
 
 Produces Stone.
 
-A mason needs to work in the quarry.",BP_Quarry,quarryIcon,default,,,,,,
+A mason needs to work in the quarry.",Quarry,quarryIcon,default,,,,,,
 School,School,14,400,None,5,0,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)","((itemType=GoldCoins,stockpileType=Educt,maxStorage=5))",0,0,#N/A,#N/A,"In the School you can create new Citizen for Gold.
 
 Requires Gold Coins
 
-No one needs to work at the school.",BP_School,schoolIcon,default,,,,,,
+No one needs to work at the school.",School,schoolIcon,default,,,,,,
 WeaponWorkshop,Weapon Workshop,7,250,Carpenter,2,1,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)","((itemType=Lumber,stockpileType=Educt,maxStorage=5),(itemType=HandAxe,stockpileType=Product,maxStorage=3))",0,0,#N/A,"((educts=((itemType=Lumber,amount=2)),products=((itemType=HandAxe,amount=1)),craftDuration=7))","In the Weapon Workshop, the Carpenter creates small axes.
 
 Requires Lumber.
 Produes Hand Axe.
 
-A carpenter needs to work in the weapons workshop.",BP_WeaponWorkshop,weaponWorkshopIcon,default,,,,,,
+A carpenter needs to work in the weapons workshop.",WeaponWorkshop,weaponWorkshopIcon,default,,,,,,
 Warehouse,Warehouse,16,600,None,2,1,"(materials=((itemType=Lumber,amount=5),(itemType=Stone,amount=7)),builderHits=90)","((itemType=Log,stockpileType=Warehouse,maxStorage=1000),(itemType=Lumber,stockpileType=Warehouse,maxStorage=1000),(itemType=HandAxe,stockpileType=Warehouse,maxStorage=1000),(itemType=Fish,stockpileType=Warehouse,maxStorage=1000),(itemType=Bread,stockpileType=Warehouse,maxStorage=1000),(itemType=Stone,stockpileType=Warehouse,maxStorage=1000),(itemType=GoldCoins,stockpileType=Warehouse,maxStorage=1000),(itemType=Wheat,stockpileType=Warehouse,maxStorage=1000),(itemType=Flour,stockpileType=Warehouse,maxStorage=1000),(itemType=IronOre,stockpileType=Warehouse,maxStorage=1000),(itemType=GoldOre,stockpileType=Warehouse,maxStorage=1000),(itemType=Coal,stockpileType=Warehouse,maxStorage=1000),(itemType=Iron,stockpileType=Warehouse,maxStorage=1000),(itemType=Wine,stockpileType=Warehouse,maxStorage=1000),(itemType=Sausages,stockpileType=Warehouse,maxStorage=1000))",0,0,#N/A,#N/A,"The Warehouse stores all of your items. 
 
-No one needs to work at the Warehouse.",BP_Warehouse,warehouseIcon,default,,,,,,
+No one needs to work at the Warehouse.",Warehouse,warehouseIcon,default,,,,,,
 MissingNo,MissingNo,0,1,MissingNo,0,0,#N/A,#N/A,0,0,#N/A,#N/A,Missing Building,0,missingIcon,default,,,,,,
 Debug,Debug,0,1,Debug,0,0,#N/A,#N/A,0,0,#N/A,#N/A,Debug Building,0,debugIcon,default,,,,,,
 ,0,0,250,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,default,,,,,,
