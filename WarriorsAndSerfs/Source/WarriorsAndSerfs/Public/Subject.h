@@ -78,7 +78,7 @@ public:
 
 	//what Type of subject this is
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	ESubjectType subjectType;
+		FName subjectType;
 
 	//The cost to educate this subject (in school or keep)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

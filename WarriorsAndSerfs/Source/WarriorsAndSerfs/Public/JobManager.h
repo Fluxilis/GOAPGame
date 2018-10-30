@@ -115,7 +115,7 @@ public:
 
 	//what kind of subject works in this building
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		ESubjectType WhoWorksHere;
+		FName WhoWorksHere;
 
 	//How many Pulljobs this building may create per stockpile
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
