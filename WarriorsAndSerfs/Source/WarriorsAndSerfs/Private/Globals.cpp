@@ -145,50 +145,6 @@ FString UGlobals::GetLotType(ELotType lot)
 	}
 }
 
-//returns the (player-side) name of the interactable
-FString UGlobals::GetInteractableType(EInteractEnvType interact)
-{
-	switch (interact)
-	{
-	case EInteractEnvType::MissingNo:
-		return "MISSING";
-		break;
-	case EInteractEnvType::Debug:
-		return "DEBUG";
-		break;
-	case EInteractEnvType::Tree:
-		return "Tree";
-		break;
-	case EInteractEnvType::Stone:
-		return "Granite";
-		break;
-	case EInteractEnvType::Coalmine:
-		return "Coal deposit";
-		break;
-	case EInteractEnvType::Ironmine:
-		return "Iron Vein";
-		break;
-	case EInteractEnvType::Goldmine:
-		return "Gold Vein";
-		break;
-	case EInteractEnvType::Fish:
-		return "Fish";
-		break;
-	case EInteractEnvType::Game:
-		return "Game";
-		break;
-	case EInteractEnvType::Wheat:
-		return "Wheat";
-		break;
-	case EInteractEnvType::Grapes:
-		return "Grapes";
-		break;
-	default:
-		return "DEFAULT!?";
-		break;
-	}
-}
-
 //returns the (player-side) name of the job
 FString UGlobals::GetHarvestingJobType(EHarvestingJobType job)
 {

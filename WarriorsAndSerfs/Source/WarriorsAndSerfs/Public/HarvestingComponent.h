@@ -20,7 +20,7 @@ public:
 
 	//what interactable Environment type you need (eg trees for Woodcutting, Coal Ore for coal mining)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		EInteractEnvType interactEnvType;
+		FName interactEnvType;
 
 	//what you get from finishing this recipe
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

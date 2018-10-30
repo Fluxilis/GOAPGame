@@ -28,12 +28,6 @@ enum class ELotType : uint8
 	Building, Constructionsite, DeadDrop //Different types of lots (may have additional specification, eg building type)
 };
 
-UENUM(BlueprintType)
-enum class EInteractEnvType : uint8
-{
-	MissingNo, Debug, //Debug
-	Tree, Stone, Coalmine, Ironmine, Goldmine, Fish, Game, Wheat, Grapes //Different types of interactable environments 
-};
 
 UENUM(BlueprintType)
 enum class EHarvestingJobType : uint8
@@ -85,10 +79,6 @@ public:
 	//returns the (player-side) name of the Lot
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	static FString GetLotType(ELotType lot);
-
-	//returns the (player-side) name of the interactable
-	UFUNCTION(BlueprintCallable, BlueprintPure)
-	static FString GetInteractableType(EInteractEnvType interact);
 
 	//returns the (player-side) name of the job
 	UFUNCTION(BlueprintCallable, BlueprintPure)
