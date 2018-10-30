@@ -256,6 +256,11 @@ public:
 	//name of the blueprint class asset
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FString BlueprintClass;
+
+	//what items this subject costs to educate (from a no one / thin air)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TArray<FItemAmount> EducateCost;
+
 };
 
 
