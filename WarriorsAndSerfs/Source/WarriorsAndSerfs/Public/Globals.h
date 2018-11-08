@@ -11,17 +11,6 @@
  */
 
 UENUM(BlueprintType)
-enum class ESubjectType : uint8
-{
-	MissingNo, Debug, None,
-	Serf, Builder,
-	Lumberjack, Carpenter, Forester, Farmer, Miller, Baker, 
-	Mason, Miner, Smelter,
-	Fisher, Rancher, Smith, Butcher, Tanner, Recruit,
-	Militia, Axeman, Swordsman, Lancer, Halbardier, Archer, Crossbowman, Scout, Horseman, Knight, Barbarian
-};
-
-UENUM(BlueprintType)
 enum class ELotType : uint8
 {
 	MissingNo, Debug, //Debug
@@ -71,10 +60,6 @@ class WARRIORSANDSERFS_API UGlobals : public UObject
 public:
 	UGlobals();
 	~UGlobals();
-
-	//returns the (player-side) name of the Subject
-	UFUNCTION(BlueprintCallable, BlueprintPure)
-	static FString GetSubjectType(ESubjectType subject);
 
 	//returns the (player-side) name of the Lot
 	UFUNCTION(BlueprintCallable, BlueprintPure)
