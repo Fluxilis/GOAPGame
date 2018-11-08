@@ -23,20 +23,28 @@ UTexture2D * UFunctionLibrary::GetTextureByPath(const FString& Path)
 
 UClass* UFunctionLibrary::GetClassByName(const FString& ClassName)
 {
-	check(*ClassName);
-	UObject* ClassPackage = ANY_PACKAGE;
+//	check(*ClassName);
+////UObject* ClassPackage = ANY_PACKAGE;
+//
+//	if (UClass* Result = LoadObject<UClass>(nullptr, *ClassName))
+//	{
+//		return Result;
+//	}
+//
+//	if (UObjectRedirector* RenamedClassRedirector = LoadObject<UObjectRedirector>(nullptr, *ClassName))
+//	{
+//		return CastChecked<UClass>(RenamedClassRedirector->DestinationObject);
+//	}
 
-	if (UClass* Result = FindObject<UClass>(ClassPackage, *ClassName))
+	UClass* returnClass = LoadObject<UClass>(NULL, *ClassName, NULL, LOAD_None, NULL);
+
+	if (!returnClass->IsChildOf(AActor::StaticClass()))
 	{
-		return Result;
+		returnClass = nullptr;
 	}
 
-	if (UObjectRedirector* RenamedClassRedirector = FindObject<UObjectRedirector>(ClassPackage, *ClassName))
-	{
-		return CastChecked<UClass>(RenamedClassRedirector->DestinationObject);
-	}
 
-	return nullptr;
+	return returnClass;
 }
 
 UStaticMesh * UFunctionLibrary::GetMeshByPath(const FString& Path)

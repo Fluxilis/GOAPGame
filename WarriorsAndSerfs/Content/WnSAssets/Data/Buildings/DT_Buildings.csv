@@ -27,7 +27,7 @@ Farm,Farm,4,225,Farmer,0,1,"(materials=((itemType=Lumber,amount=5),(itemType=Sto
 Produces Grain.
 
 A farmer needs to work on the farm.",Farm,farmIcon,default,,,,,,
-ForestingLodge,Foresting Lodge,3,200,Forester,0,0,"(materials=((itemType=Lumber,amount=2),(itemType=Stone,amount=2)),builderHits=35)",#N/A,800,1500,#N/A,#N/A,"The Forester operates from this house, to plant trees in the area you specified.
+ForestingLodge,Foresting Lodge,3,200,Forester,0,0,"(materials=((itemType=Lumber,amount=2),(itemType=Stone,amount=2)),builderHits=35)",#N/A,800,1500,"((products=((itemType=None,amount=0)),polishDuration=0,interactEnvType=Tree))",#N/A,"The Forester operates from this house, to plant trees in the area you specified.
 
 A forester needs to work in the foresting lodge.",ForestingLodge,forestingLodgeIcon,default,,,,,,
 Goldmine,Goldmine,10,150,Miner,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=25)","((itemType=GoldOre,stockpileType=Product,maxStorage=4))",1000,1500,"((products=((itemType=GoldOre,amount=1)),polishDuration=2,interactEnvType=Goldmine))",#N/A,"The Miner operates from this house, to mine gold ore from gold veins in the area you specified.
