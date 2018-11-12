@@ -76,9 +76,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString playerLabel; 
 
-	//what Type of subject this is
+	//what Job this subject currently has
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FName subjectType;
+	FName subjectOccupation;
 
 	//The cost to educate this subject (in school or keep)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
