@@ -4,6 +4,12 @@
 
 #include "UnrealNetwork.h"
 
+
+//TODO REMOVE
+
+//print to screen macro
+#define printCritical(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 600.0, FColor::Red,text)
+
 // Sets default values
 ASubject::ASubject()
 {
@@ -113,4 +119,29 @@ void ASubject::ReduceFood(float x)
 		currentFood = 0;
 	}
 
+}
+
+FName ASubject::ChooseOccupation_Implementation()
+{
+	UDataTable* occupationsDataTable;
+
+	FName occupationsDataTablePath = "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'";
+	occupationsDataTable = Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), NULL, *occupationsDataTablePath.ToString()));
+
+	/*if (occupationsDataTable == nullptr || !occupationsDataTable)
+	{
+		printCritical("Subject.cpp ChooseOccupation did not find Subject Datatable!");
+	}*/
+
+	int rowsAmt = occupationsDataTable->GetRowNames().Num();
+
+	int random = FMath::RandRange(0, rowsAmt - 1);
+
+	//printCritical(random);
+
+	//FDTS_Subject* row = occupationsDataTable->FindRow<FDTS_Subject>(item, TEXT(""));
+
+	//return row->ItemPriority;
+
+	return occupationsDataTable->GetRowNames()[random];
 }

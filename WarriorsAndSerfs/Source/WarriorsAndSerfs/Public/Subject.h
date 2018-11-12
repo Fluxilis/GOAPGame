@@ -7,6 +7,8 @@
 
 #include "Lot.h"
 
+#include "Engine/DataTable.h"
+
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Subject.generated.h" 
@@ -143,5 +145,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void SubjectDie();
 
-
+	//Subject selects an occupation
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	FName ChooseOccupation();
+	virtual FName ChooseOccupation_Implementation();
 };
