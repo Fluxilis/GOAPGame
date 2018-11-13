@@ -24,6 +24,14 @@ ASubject::ASubject(const FObjectInitializer& ObjectInitializer)	: Super(ObjectIn
 	bReplicates = true;
 	bReplicateMovement = true;
 	bNetLoadOnClient = true;
+
+	strength = GetRandomAttributeValue();
+	dexterity = GetRandomAttributeValue();
+	constitution = GetRandomAttributeValue(); 
+	intelligence = GetRandomAttributeValue();
+	wisdom = GetRandomAttributeValue();
+	charisma = GetRandomAttributeValue();
+
 }
 
 void ASubject::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
@@ -121,27 +129,33 @@ void ASubject::ReduceFood(float x)
 
 }
 
+UDataTable* ASubject::GetOccupationsDatatable()
+{
+	return UGlobals::GetUDatatable(OCCUPATIONSDATATABLEPATH);
+	//return UGlobals::GetUDatatable("DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'");
+}
+
 FName ASubject::ChooseOccupation_Implementation()
 {
-	UDataTable* occupationsDataTable;
-
-	FName occupationsDataTablePath = "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'";
-	occupationsDataTable = Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), NULL, *occupationsDataTablePath.ToString()));
-
-	/*if (occupationsDataTable == nullptr || !occupationsDataTable)
+	UDataTable* occupationsDataTable = GetOccupationsDatatable();
+	
+	if (occupationsDataTable == nullptr || !occupationsDataTable)
 	{
 		printCritical("Subject.cpp ChooseOccupation did not find Subject Datatable!");
-	}*/
+	}
 
-	int rowsAmt = occupationsDataTable->GetRowNames().Num();
-
-	int random = FMath::RandRange(0, rowsAmt - 1);
-
-	//printCritical(random);
-
-	//FDTS_Subject* row = occupationsDataTable->FindRow<FDTS_Subject>(item, TEXT(""));
-
-	//return row->ItemPriority;
-
+	int random = FMath::RandRange(0, occupationsDataTable->GetRowNames().Num() - 1);	
 	return occupationsDataTable->GetRowNames()[random];
+}
+
+TArray<FName> ASubject::GetFavouredOccupations()
+{
+	return GetOccupationsDatatable()->GetRowNames();
+}
+
+
+int ASubject::GetRandomAttributeValue()
+{
+	//3d5, for an average value around 9 (max is 15, so there's room to grow!)
+	return FMath::RandRange(1, 5) + FMath::RandRange(1, 5) + FMath::RandRange(1, 5);
 }

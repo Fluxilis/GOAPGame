@@ -15,6 +15,8 @@
 //"Should always be the last #include in a header"
 
 
+#define OCCUPATIONSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'"
+
 
 UCLASS(abstract)
 class WARRIORSANDSERFS_API ASubject : public ACharacter
@@ -115,6 +117,23 @@ public:
 	float hungerDamagePerSecond;
 
 
+	///Attributes
+	///They are displayed to the player as ints, but are saved as floats, so they can increase slowly as the citizen gains experience in that attribute.
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
+	float strength;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
+	float dexterity;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
+	float constitution;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
+	float intelligence;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
+	float wisdom;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
+	float charisma;
+
+
 
 	//functions
 
@@ -145,8 +164,20 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void SubjectDie();
 
+	//returns the Occupations Datatable
+	UDataTable* GetOccupationsDatatable();
+
 	//Subject selects an occupation
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	FName ChooseOccupation();
 	virtual FName ChooseOccupation_Implementation();
+
+	//Returns a list with all occupations this citizen can do. Sorted by most to least favoured.
+	UFUNCTION(BlueprintCallable)
+	TArray<FName> GetFavouredOccupations();
+
+	
+	UFUNCTION(BlueprintCallable)
+	int GetRandomAttributeValue();
+
 };

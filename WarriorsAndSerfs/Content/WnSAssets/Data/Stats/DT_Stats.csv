@@ -1,0 +1,25 @@
+Name,DisplayName,Description,DisplayType
+PlantSkill,Plant Skill,How familiar this citizen is with Plants,ZeroDecimalFloat
+FoodSkill,Food Skill,How good this citizen is with Food,ZeroDecimalFloat
+Gender,Gender,What Gender this citizen has.,Text
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0
+,0,0,0

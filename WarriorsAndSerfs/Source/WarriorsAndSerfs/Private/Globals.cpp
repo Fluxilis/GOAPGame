@@ -6,6 +6,13 @@ FItemAmount::FItemAmount()
 {
 }
 
+FDTS_Occupation::FDTS_Occupation()
+{
+}
+
+FDTS_SubjectStat::FDTS_SubjectStat()
+{
+}
 
 UGlobals::UGlobals()
 {
@@ -94,5 +101,11 @@ FString UGlobals::GetCraftingJobType(ECraftingJobType job)
 		return "DEFAULT!?";
 		break;
 	}
+}
+
+
+UDataTable* UGlobals::GetUDatatable(const FString& Path)
+{
+	return Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), NULL, *Path));
 }
 

@@ -2,8 +2,9 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Engine/DataTable.h"
 
+#include "CoreMinimal.h"
 #include "Globals.generated.h"
 
 /**
@@ -49,6 +50,71 @@ public:
 	int amount;
 };
 
+//The different stats a subject can have (attributes(?), skills, other(?)
+USTRUCT(BlueprintType)
+struct FDTS_SubjectStat: public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FDTS_SubjectStat();
+
+	//stat name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName Name;
+
+	//stat display name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName DisplayName;
+
+	//player-visible description of the stat
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText Description;
+
+	//how this stat is displayed - will be asked by UI and handled there
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName DisplayType;
+};
+
+//struct for item datatables
+USTRUCT(BlueprintType)
+struct FDTS_Occupation : public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FDTS_Occupation();
+
+	//what the player sees as Occupation Name / Job Title
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText DisplayName;
+
+	//where in lists (eg stats?) this Occupation should be displayed
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int OrderInLists;
+	
+	//help text the player can read (eg tooltip, info button)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText HelpText;
+
+	//name of the icon asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Icon;
+
+	//name of the 3dMesh asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Mesh;
+
+	//name of the blueprint class asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString BlueprintClass;
+
+	//what items this occupation costs to educate (from a default / thin air)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FItemAmount> EducateCost;
+};
+
+
 
 
 UCLASS(Blueprintable)
@@ -72,6 +138,10 @@ public:
 	//returns the (player-side) name of the job
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	static FString GetCraftingJobType(ECraftingJobType job);
+
+	//returns the datatable at the specified path
+	UFUNCTION(BlueprintCallable)
+	static UDataTable* GetUDatatable(const FString& Path);
 };
 
 
