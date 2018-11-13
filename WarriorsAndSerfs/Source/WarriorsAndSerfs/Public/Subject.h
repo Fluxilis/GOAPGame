@@ -16,6 +16,7 @@
 
 
 #define OCCUPATIONSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'"
+#define SUBJECTSTATSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Stats/DT_SubjectStats.DT_SubjectStats'"
 
 
 UCLASS(abstract)
@@ -133,6 +134,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
 	float charisma;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
+	TMap<FName, FSubjectStatValue> statsMap;
 
 
 	//functions
@@ -167,6 +170,9 @@ public:
 	//returns the Occupations Datatable
 	UDataTable* GetOccupationsDatatable();
 
+	//returns the SubjectStats Datatable
+	UDataTable* GetSubjectStatsDatatable();
+
 	//Subject selects an occupation
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	FName ChooseOccupation();
@@ -180,4 +186,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	int GetRandomAttributeValue();
 
+	//returns initiated stat for this type of stat (can be random within limits, or defined...)
+	UFUNCTION(BlueprintCallable)
+		FString InitSubjectStat(FName statName);
 };

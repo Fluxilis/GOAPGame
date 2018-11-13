@@ -14,6 +14,17 @@ FDTS_SubjectStat::FDTS_SubjectStat()
 {
 }
 
+FSubjectStatValue::FSubjectStatValue()
+{
+}
+
+FSubjectStatValue::FSubjectStatValue(FName _statName, FString _statValue)
+{
+	StatName = _statName;
+	StatValue = _statValue;
+}
+
+
 UGlobals::UGlobals()
 {
 }

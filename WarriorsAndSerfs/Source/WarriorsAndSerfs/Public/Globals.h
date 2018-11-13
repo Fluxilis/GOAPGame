@@ -71,10 +71,34 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText Description;
 
-	//how this stat is displayed - will be asked by UI and handled there
+	//identifier how this stat is displayed - will be asked by UI and handled there
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName DisplayType;
+
+	//identifier for how the initial value for this stat is calculated
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName InitialValue;
 };
+
+//The SubjectStat's Value
+USTRUCT(BlueprintType)
+struct FSubjectStatValue
+{
+	GENERATED_BODY()
+
+public:
+	FSubjectStatValue();
+	FSubjectStatValue(FName _statName, FString _statValue);
+
+	//stat name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName StatName;
+
+	//stat value
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString StatValue;
+};
+
 
 //struct for item datatables
 USTRUCT(BlueprintType)
