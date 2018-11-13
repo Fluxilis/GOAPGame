@@ -61,7 +61,7 @@ public:
 
 	//stat name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FName Name;
+	FName StatName;
 
 	//stat display name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -84,6 +84,10 @@ struct FDTS_Occupation : public FTableRowBase
 
 public:
 	FDTS_Occupation();
+
+	//occupation name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName OccupationName;
 
 	//what the player sees as Occupation Name / Job Title
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

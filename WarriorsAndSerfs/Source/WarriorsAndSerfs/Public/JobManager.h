@@ -67,6 +67,10 @@ struct FDTS_Item : public FTableRowBase
 public:
 	FDTS_Item();
 
+	//item name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName ItemName;
+
 	//what the player sees as item name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FText DisplayName;
@@ -100,6 +104,10 @@ struct FDTS_Building: public FTableRowBase
 
 public:
 	FDTS_Building();
+
+	//building name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName BuildingName;
 
 	//what the player sees as building name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -175,6 +183,10 @@ struct FDTS_Harvestable : public FTableRowBase
 public:
 	FDTS_Harvestable();
 
+	//harvestable name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName HarvestableName;
+
 	//what the player sees as Harvestable name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FText DisplayName;
@@ -228,6 +240,10 @@ struct FDTS_Subject : public FTableRowBase
 
 public:
 	FDTS_Subject();
+
+	//Subject name
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FName SubjectName;
 
 	//what the player sees as Subject Name (/Job Title)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
