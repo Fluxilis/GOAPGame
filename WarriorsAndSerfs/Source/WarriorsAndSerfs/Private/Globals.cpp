@@ -162,3 +162,36 @@ float UGlobals::CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FNam
 
 	return totalSpeed;
 }
+
+FText UGlobals::GetStatDisplayText(FSubjectStatValue subjectStatVal)
+{
+	FDTS_SubjectStat* subjectStat = GetUDatatable(SUBJECTSTATSDATATABLEPATH)->FindRow<FDTS_SubjectStat>(subjectStatVal.StatName, TEXT(""));
+
+	FName statDisplayType = subjectStat->DisplayType;
+	FString statValue = subjectStatVal.StatValue;
+
+	if (statDisplayType == TEXT("Text"))
+	{
+		//just return as is
+		return FText::FromString(statValue);
+	}
+
+	if (statDisplayType == TEXT("ZeroDecimalPercent")
+		|| statDisplayType == TEXT("Attribute")
+		|| statDisplayType == TEXT("Skill"))
+	{
+		int index;
+		if (statValue.FindChar('.', index))
+		{
+			//if Value is a '.' seperated Float, return only whole number
+			return FText::FromString(statValue.Left(index));
+		}
+		//if doesn't have decimals, return as is
+		return FText::FromString(statValue);
+	}
+
+	FString failedText = "GetStatDisplayText could not find displayType: ";
+	failedText.Append(statDisplayType.ToString());
+	return FText::FromString(failedText);
+}
+

@@ -8,6 +8,9 @@
 #include "Globals.generated.h"
 
 
+
+#define OCCUPATIONSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'"
+#define SUBJECTSTATSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/SubjectStats/DT_SubjectStats.DT_SubjectStats'"
 #define WORKTYPESDATATABLEPATH "DataTable'/Game/WnSAssets/Data/WorkTypes/DT_WorkTypes.DT_WorkTypes'"
 #define SKILLLEVELSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/SkillLevels/DT_SkillLevels.DT_SkillLevels'"
 
@@ -69,7 +72,7 @@ public:
 
 	//stat display name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FName DisplayName;
+	FText DisplayName;
 
 	//player-visible description of the stat
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -246,6 +249,11 @@ public:
 	//Calculates workspeed of a certain workType with a certain skill/statset (ie for a certain citizen)
 	UFUNCTION(BlueprintCallable)
 	static float CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FName workType);
+
+	//returns a Text with statValue, formatted in the way of this subjectStat
+	UFUNCTION(BlueprintCallable)
+	static FText GetStatDisplayText(FSubjectStatValue subjectStatVal);
+
 };
 
 
