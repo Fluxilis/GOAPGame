@@ -1,0 +1,46 @@
+Calculation (up to 10 factors):
+
+="("
+&IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2)));
+"(StatName="&C2&", StatImportance="&D2&")"
+	&IF(AND(NOT(ISBLANK(E2));NOT(ISBLANK(F2)));
+	",(StatName="&E2&", StatImportance="&F2&")"
+		&IF(AND(NOT(ISBLANK(G2));NOT(ISBLANK(H2)));
+		",(StatName="&G2&", StatImportance="&H2&")"
+			&IF(AND(NOT(ISBLANK(I2));NOT(ISBLANK(J2)));
+			",(StatName="&I2&", StatImportance="&J2&")"
+				&IF(AND(NOT(ISBLANK(K2));NOT(ISBLANK(L2)));
+				",(StatName="&K2&", StatImportance="&L2&")"
+					&IF(AND(NOT(ISBLANK(M2));NOT(ISBLANK(N2)));
+					",(StatName="&M2&", StatImportance="&N2&")"
+						&IF(AND(NOT(ISBLANK(O2));NOT(ISBLANK(P2)));
+						",(StatName="&O2&", StatImportance="&P2&")"
+							&IF(AND(NOT(ISBLANK(Q2));NOT(ISBLANK(R2)));
+							",(StatName="&Q2&", StatImportance="&R2&")"
+								&IF(AND(NOT(ISBLANK(S2));NOT(ISBLANK(T2)));
+								",(StatName="&S2&", StatImportance="&T2&")"
+									&IF(AND(NOT(ISBLANK(U2));NOT(ISBLANK(V2)));
+									",(StatName="&U2&", StatImportance="&V2&")";
+									"");
+								"");
+							"");
+						"");
+					"");
+				"");
+			"");
+		"");
+	"");
+"")
+&")"
+
+
+
+Match StatImportances
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.$E2;StatImportances.$A$1:$A$500;0);
+		MATCH("Importances";StatImportances.$A$1:$H$1;0);
+			1;1;"StatImportances"
+	)
+)

@@ -10,6 +10,14 @@ FDTS_Occupation::FDTS_Occupation()
 {
 }
 
+FWorkSpeedStatImportance::FWorkSpeedStatImportance()
+{
+}
+
+FDTS_WorkType::FDTS_WorkType()
+{
+}
+
 FDTS_SubjectStat::FDTS_SubjectStat()
 {
 }
@@ -120,3 +128,22 @@ UDataTable* UGlobals::GetUDatatable(const FString& Path)
 	return Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), NULL, *Path));
 }
 
+
+float UGlobals::CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FName workType)
+{
+	TArray<FWorkSpeedStatImportance> statImportances = GetUDatatable(WORKTYPESDATATABLEPATH)->FindRow<FDTS_WorkType>(workType, TEXT(""))->StatImportances;
+
+	float totalSpeed = 100;
+
+	for (int i = 0; i < statImportances.Num(); i++)
+	{
+		FString stat = statsMap.Find(statImportances[i].StatName)->StatValue;
+		float importance = statImportances[i].StatImportance;
+
+		float totalImpact = 100 - ((100 - FCString::Atof(*stat) * importance / 100));
+		
+		totalSpeed = totalSpeed * (totalImpact / 100);
+	}
+
+	return totalSpeed;
+}

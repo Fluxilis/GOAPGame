@@ -1,0 +1,19 @@
+Name,WorkTypeName,DisplayName,HelpText,StatImportances
+HarvestTree,HarvestTree,Cut down a Tree,Lumberjack whacks a tree until it falls,"((StatName=Strength, StatImportance=100),(StatName=Constitution, StatImportance=80),(StatName=Wisdom, StatImportance=40),(StatName=PlantSkill, StatImportance=50))"
+PolishLog,PolishLog,Debranch a Tree,Lumberjack janks on a tree until it's clean,"((StatName=Strength, StatImportance=70),(StatName=Dexterity, StatImportance=70),(StatName=Constitution, StatImportance=50),(StatName=PlantSkill, StatImportance=50))"
+SawLog,SawLog,Saw a Log,Sawmiller sawmills the log,"((StatName=Strength, StatImportance=70),(StatName=Dexterity, StatImportance=70),(StatName=Constitution, StatImportance=50),(StatName=PlantSkill, StatImportance=25))"
+PlantTree,PlantTree,Plant a Sapling,Forester sticks a stick into the ground,"((StatName=Dexterity, StatImportance=100),(StatName=Intelligence, StatImportance=50),(StatName=Wisdom, StatImportance=50),(StatName=PlantSkill, StatImportance=100))"
+PlantWheat,PlantWheat,Plant Seeds,Farmer throws some stones around,"((StatName=Dexterity, StatImportance=60),(StatName=Constitution, StatImportance=40),(StatName=Intelligence, StatImportance=50),(StatName=Wisdom, StatImportance=50),(StatName=PlantSkill, StatImportance=100))"
+HarvestWheat,HarvestWheat,Harvest Wheat,Farmer cuts some Gold,"((StatName=Dexterity, StatImportance=80),(StatName=Constitution, StatImportance=40),(StatName=PlantSkill, StatImportance=75))"
+PolishWheat,PolishWheat,Thresh Wheat,Farmer violates some Wheat,"((StatName=Strength, StatImportance=80),(StatName=Dexterity, StatImportance=30),(StatName=Constitution, StatImportance=80))"
+HarvestStone,HarvestStone,Mine Stone,Mason hits a mountain,"((StatName=Strength, StatImportance=100),(StatName=Constitution, StatImportance=90),(StatName=StoneSkill, StatImportance=80))"
+PolishStone,PolishStone,Cut Stone,Mason hits a tiny mountain,"((StatName=Strength, StatImportance=50),(StatName=Dexterity, StatImportance=75),(StatName=Intelligence, StatImportance=50),(StatName=StoneSkill, StatImportance=100))"
+MintCoins,MintCoins,Mint Coins,Magician turns Gold into Gold,"((StatName=Dexterity, StatImportance=80),(StatName=Constitution, StatImportance=60),(StatName=Intelligence, StatImportance=100),(StatName=MetalSkill, StatImportance=100))"
+SmeltIron,SmeltIron,Smelt Iron bars,Smelter melts iron into bars,"((StatName=Dexterity, StatImportance=80),(StatName=Constitution, StatImportance=60),(StatName=Intelligence, StatImportance=80),(StatName=MetalSkill, StatImportance=100))"
+,0,0,0,#N/A
+,0,0,0,#N/A
+,0,0,0,#N/A
+,0,0,0,#N/A
+,0,0,0,#N/A
+,0,0,0,#N/A
+,0,0,0,#N/A

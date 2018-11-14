@@ -7,6 +7,9 @@
 #include "CoreMinimal.h"
 #include "Globals.generated.h"
 
+
+#define WORKTYPESDATATABLEPATH "DataTable'/Game/WnSAssets/Data/WorkTypes/DT_WorkTypes.DT_WorkTypes'"
+
 /**
  * 
  */
@@ -143,6 +146,49 @@ public:
 };
 
 
+//How important this Stat is for the workspeed
+USTRUCT(BlueprintType)
+struct FWorkSpeedStatImportance
+{
+	GENERATED_BODY()
+
+public:
+	FWorkSpeedStatImportance();
+
+	//stat name (must match a stat of SubjectStats)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName StatName;
+
+	//stat value
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float StatImportance;
+};
+
+//struct for work datatable 
+USTRUCT(BlueprintType)
+struct FDTS_WorkType : public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FDTS_WorkType();
+
+	//work name 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName WorkTypeName;
+
+	//what the player sees as Work Title
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText DisplayName;
+
+	//help text the player can read (eg tooltip, info button)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText HelpText;
+
+	//stat value
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FWorkSpeedStatImportance> StatImportances;
+};
 
 
 UCLASS(Blueprintable)
@@ -170,6 +216,10 @@ public:
 	//returns the datatable at the specified path
 	UFUNCTION(BlueprintCallable)
 	static UDataTable* GetUDatatable(const FString& Path);
+
+	//returns the datatable at the specified path
+	UFUNCTION(BlueprintCallable)
+	static float CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FName workType);
 };
 
 

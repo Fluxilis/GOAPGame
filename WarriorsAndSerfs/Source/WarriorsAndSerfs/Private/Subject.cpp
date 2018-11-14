@@ -185,6 +185,10 @@ FString ASubject::InitSubjectStat(FName statName)
 	{
 		return "0";
 	}
+	if (stats->InitialValue == FName(TEXT("Hundred")))
+	{
+		return "100";
+	}
 	if (stats->InitialValue == FName(TEXT("pickGender")))
 	{
 		return FMath::RandRange(0, 1) == 0 ? "Male" : "Female";
