@@ -10,6 +10,7 @@
 //print to screen macro
 #define printCritical(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 600.0, FColor::Red,text)
 
+
 // Sets default values
 ASubject::ASubject()
 {
@@ -66,7 +67,7 @@ void ASubject::Tick(float DeltaTime)
 		HealthRegen(healthToReg);
 	}
 
-	UpdateActiveUI();
+	UpdateActiveUI(UPDATEUIIDFOOD);
 }
 
 
@@ -81,7 +82,7 @@ void ASubject::SetDestination(ALot* lot, FVector location)
 
 void ASubject::HealthRegen(float x)
 {
-	//this is more likey to be true than false, and I can save a little processing power (with the UpdateUI!)
+	//this is much more likey to be true than false, and I can save a little processing power (with the UpdateUI!)
 	if (currentHealth == maxHealth)
 	{
 		return;
@@ -94,7 +95,7 @@ void ASubject::HealthRegen(float x)
 		currentHealth = maxHealth;
 	}
 
-	UpdateActiveUI();
+	UpdateActiveUI(UPDATEUIIDHEALTH);
 }
 
 void ASubject::TakeDamage(float x)
@@ -107,7 +108,7 @@ void ASubject::TakeDamage(float x)
 	}
 	else
 	{
-		UpdateActiveUI();
+		UpdateActiveUI(UPDATEUIIDHEALTH);
 	}
 }
 

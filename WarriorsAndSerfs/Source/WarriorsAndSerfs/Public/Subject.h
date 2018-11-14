@@ -135,8 +135,9 @@ public:
 	void SetDestination(ALot* lot, FVector location);
 
 	//Update ui that has already spawned
-	UFUNCTION(BlueprintImplementableEvent)
-	void UpdateActiveUI();
+	//uiToUpdate describes which UI element to update (to save performance)
+	UFUNCTION(BlueprintImplementableEvent, Category = UI)
+	void UpdateActiveUI(FName uiToUpdate);
 
 	//Subject heals for x health
 	UFUNCTION(BlueprintCallable, Category = SubjectHealth)

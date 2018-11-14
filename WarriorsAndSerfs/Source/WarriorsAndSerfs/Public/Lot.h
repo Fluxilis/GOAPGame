@@ -161,8 +161,10 @@ public:
 	void RemovePredictedItem(FName item, int amount);
 
 	//Update ui that has already spawned
-	UFUNCTION(BlueprintImplementableEvent)
-	void UpdateActiveUI();
+	//uiToUpdate describes which UI element to update (to save performance)
+	//EXCEPTION: To update stockpiles, please use UpdateActiveUIStockpile()!
+	UFUNCTION(BlueprintImplementableEvent, Category = UI)
+	void UpdateActiveUI(FName uiToUpdate);
 
 	//adds a stockpile from the list.
 	UFUNCTION(BlueprintCallable)

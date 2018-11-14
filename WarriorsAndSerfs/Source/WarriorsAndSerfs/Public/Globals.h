@@ -7,7 +7,10 @@
 #include "CoreMinimal.h"
 #include "Globals.generated.h"
 
-
+#define UPDATEUIIDHEALTH TEXT("Health")
+#define UPDATEUIIDFOOD TEXT("Food")
+#define UPDATEUIIDALL TEXT("All")
+#define UPDATEUIIDALLITEMS TEXT("AllItems")
 
 #define OCCUPATIONSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'"
 #define SUBJECTSTATSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/SubjectStats/DT_SubjectStats.DT_SubjectStats'"

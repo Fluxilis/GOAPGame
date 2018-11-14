@@ -66,7 +66,7 @@ void ALot::TakeDamage(float x)
 	}
 	else
 	{
-		UpdateActiveUI();
+		UpdateActiveUI(UPDATEUIIDHEALTH);
 	}
 }
 
@@ -146,7 +146,7 @@ void ALot::AddItem(FName item, int amount = 1)
 	}
 
 
-	UpdateActiveUI();
+	UpdateActiveUI(item);
 }
 
 //removes amount items from the stockpile. Does not check if there are enough!
@@ -171,7 +171,7 @@ void ALot::RemoveItem(FName item, int amount = 1)
 	}
 
 
-	UpdateActiveUI();
+	UpdateActiveUI(item);
 }
 
 void ALot::AddStockpile(FName item, EStockpileType type, int maxStorage)
@@ -179,7 +179,7 @@ void ALot::AddStockpile(FName item, EStockpileType type, int maxStorage)
 	FStockpile* pile = new FStockpile(item, type, maxStorage);
 	stockpiles.Add(*pile);
 
-	UpdateActiveUI();
+	UpdateActiveUI(UPDATEUIIDALLITEMS);
 }
 
 void ALot::RemoveStockpile(FName item)
@@ -197,7 +197,7 @@ void ALot::RemoveStockpile(FName item)
 		}
 	}
 
-	UpdateActiveUI();
+	UpdateActiveUI(item);
 }
 
 //DeliverySystem
