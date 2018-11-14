@@ -18,6 +18,10 @@ FDTS_WorkType::FDTS_WorkType()
 {
 }
 
+FDTS_SkillLevel::FDTS_SkillLevel()
+{
+}
+
 FDTS_SubjectStat::FDTS_SubjectStat()
 {
 }
@@ -131,17 +135,28 @@ UDataTable* UGlobals::GetUDatatable(const FString& Path)
 
 float UGlobals::CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FName workType)
 {
-	TArray<FWorkSpeedStatImportance> statImportances = GetUDatatable(WORKTYPESDATATABLEPATH)->FindRow<FDTS_WorkType>(workType, TEXT(""))->StatImportances;
+	//stat importances for this workType
+	TArray<FWorkSpeedStatImportance> statImportances = GetUDatatable(WORKTYPESDATATABLEPATH)->FindRow<FDTS_WorkType>(workType, TEXT(""))->StatImportances;	
 
+	//base speed
 	float totalSpeed = 100;
 
+	//do for every relevant stat for this workType
 	for (int i = 0; i < statImportances.Num(); i++)
 	{
 		FString stat = statsMap.Find(statImportances[i].StatName)->StatValue;
-		float importance = statImportances[i].StatImportance;
+		if (stat == "0")
+		{
+			//if level of skill is "incapable", speed is zero.
+			return 0;
+		}
 
-		float totalImpact = 100 - ((100 - FCString::Atof(*stat) * importance / 100));
+		//workspeed for this skill Level
+		int statValue = GetUDatatable(SKILLLEVELSDATATABLEPATH)->FindRow<FDTS_SkillLevel>(FName(*stat), TEXT(""))->Percentage;
+		//importance of the skill for the workType - how much the total speed is influenced by the skill
+		float importance = statImportances[i].StatImportance;
 		
+		float totalImpact = 100 - ((100 - statValue) * importance / 100);
 		totalSpeed = totalSpeed * (totalImpact / 100);
 	}
 

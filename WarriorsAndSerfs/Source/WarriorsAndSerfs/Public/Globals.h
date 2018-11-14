@@ -9,6 +9,7 @@
 
 
 #define WORKTYPESDATATABLEPATH "DataTable'/Game/WnSAssets/Data/WorkTypes/DT_WorkTypes.DT_WorkTypes'"
+#define SKILLLEVELSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/SkillLevels/DT_SkillLevels.DT_SkillLevels'"
 
 /**
  * 
@@ -190,6 +191,31 @@ public:
 	TArray<FWorkSpeedStatImportance> StatImportances;
 };
 
+//struct for skillLevels datatable (this applies to all skills)
+USTRUCT(BlueprintType)
+struct FDTS_SkillLevel: public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	FDTS_SkillLevel();
+
+	//skill level 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FName SkillLevel;
+
+	//Workspeed percentage
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Percentage;
+
+	//Title - sounds cool, makes the citizen feel important
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText Title;
+
+	//help text the player can read (eg tooltip, info button)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText HelpText;
+};
 
 UCLASS(Blueprintable)
 class WARRIORSANDSERFS_API UGlobals : public UObject
@@ -217,7 +243,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	static UDataTable* GetUDatatable(const FString& Path);
 
-	//returns the datatable at the specified path
+	//Calculates workspeed of a certain workType with a certain skill/statset (ie for a certain citizen)
 	UFUNCTION(BlueprintCallable)
 	static float CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FName workType);
 };

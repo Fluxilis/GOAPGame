@@ -15,7 +15,6 @@ ASubject::ASubject()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 
@@ -25,19 +24,6 @@ ASubject::ASubject(const FObjectInitializer& ObjectInitializer)	: Super(ObjectIn
 	bReplicateMovement = true;
 	bNetLoadOnClient = true;
 
-	strength = GetRandomAttributeValue();
-	dexterity = GetRandomAttributeValue();
-	constitution = GetRandomAttributeValue(); 
-	intelligence = GetRandomAttributeValue();
-	wisdom = GetRandomAttributeValue();
-	charisma = GetRandomAttributeValue();
-
-	UDataTable* statsTable = GetSubjectStatsDatatable();
-	TArray<FName> rowNames = statsTable->GetRowNames();
-	for (int i = 0; i < rowNames.Num(); i++)
-	{
-		statsMap.Add(rowNames[i], FSubjectStatValue(rowNames[i], InitSubjectStat(rowNames[i])));
-	}
 }
 
 void ASubject::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
@@ -53,6 +39,7 @@ void ASubject::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	InitialiseSubjectStats();
 }
 
 // Called every frame
@@ -166,6 +153,21 @@ TArray<FName> ASubject::GetFavouredOccupations()
 	return GetOccupationsDatatable()->GetRowNames();
 }
 
+//if initialiseOverrideAllStats is set to true, will generate new values for every stat
+//if initialiseOverrideAllStats is set to false, will generate new values for every stat that doesn't have a value.
+void ASubject::InitialiseSubjectStats()
+{
+	UDataTable* statsTable = GetSubjectStatsDatatable();
+	TArray<FName> rowNames = statsTable->GetRowNames();
+	for (int i = 0; i < rowNames.Num(); i++)
+	{
+		if (initialiseOverrideAllStats || !statsMap.Contains(rowNames[i])) //if all stats should be initialised, OR if (should not be initialised and) the map doesn't have this stat yet
+		{
+			statsMap.Add(rowNames[i], FSubjectStatValue(rowNames[i], InitSubjectStat(rowNames[i])));
+		}
+	}
+
+}
 
 int ASubject::GetRandomAttributeValue()
 {
@@ -181,14 +183,14 @@ FString ASubject::InitSubjectStat(FName statName)
 	UDataTable* statsTable = GetSubjectStatsDatatable();
 	FDTS_SubjectStat* stats = statsTable->FindRow<FDTS_SubjectStat>(statName, TEXT(""));
 
-	if (stats->InitialValue == FName(TEXT("Zero")))
+	if (stats->InitialValue == FName(TEXT("1")))
 	{
-		return "0";
-	}
-	if (stats->InitialValue == FName(TEXT("Hundred")))
+		return "1";
+	}	
+	if (stats->InitialValue == FName(TEXT("100")))
 	{
 		return "100";
-	}
+	}	
 	if (stats->InitialValue == FName(TEXT("pickGender")))
 	{
 		return FMath::RandRange(0, 1) == 0 ? "Male" : "Female";
@@ -198,7 +200,7 @@ FString ASubject::InitSubjectStat(FName statName)
 		return FString::FromInt(GetRandomAttributeValue());
 	}
 
-	FString failedString = "Initalising Value Failed: ";
+	FString failedString = "initalising value failed: ";
 	failedString.Append(stats->InitialValue.ToString());
 	return failedString;
 }

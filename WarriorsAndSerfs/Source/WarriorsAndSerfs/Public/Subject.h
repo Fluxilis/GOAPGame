@@ -16,7 +16,7 @@
 
 
 #define OCCUPATIONSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'"
-#define SUBJECTSTATSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Stats/DT_SubjectStats.DT_SubjectStats'"
+#define SUBJECTSTATSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/SubjectStats/DT_SubjectStats.DT_SubjectStats'"
 
 
 UCLASS(abstract)
@@ -118,24 +118,17 @@ public:
 	float hungerDamagePerSecond;
 
 
-	///Attributes
-	///They are displayed to the player as ints, but are saved as floats, so they can increase slowly as the citizen gains experience in that attribute.
 
+	//set to false on subjects that start on the map with predefined stats.
+	//if set to true, will generate new values for every stat
+	//if set to false, will generate new values for every stat that doesn't have a value.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
-	float strength;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
-	float dexterity;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
-	float constitution;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
-	float intelligence;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
-	float wisdom;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
-	float charisma;
+		bool initialiseOverrideAllStats = true;
 
+	//Subject Stats
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Personality)
 	TMap<FName, FSubjectStatValue> statsMap;
+
 
 
 	//functions
@@ -182,7 +175,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<FName> GetFavouredOccupations();
 
-	
+	//initialises stats for subject
+	UFUNCTION(BlueprintCallable)
+		void InitialiseSubjectStats();
+
+	//3d5
 	UFUNCTION(BlueprintCallable)
 	int GetRandomAttributeValue();
 

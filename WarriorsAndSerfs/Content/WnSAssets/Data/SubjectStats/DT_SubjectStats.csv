@@ -1,15 +1,15 @@
 Name,StatName,DisplayName,Description,DisplayType,InitialValue,0
-GlobalWorkSpeed,GlobalWorkSpeed,Global Work Speed,How fast this citizen works in general,ZeroDecimalPercent,Hundred,0
+GlobalWorkSpeed,GlobalWorkSpeed,Global Work Speed,How fast this citizen works in general,ZeroDecimalPercent,100,0
 Strength,Strength,Strength,"How Strong this citizen is, physically",ZeroDecimalFloat,3d5,0
 Dexterity,Dexterity,Dexterity,How Dexterous this citizen is.,ZeroDecimalFloat,3d5,0
 Constitution,Constitution,Constitution,How good this citizen's Constitution is.,ZeroDecimalFloat,3d5,0
 Intelligence,Intelligence,Intelligence,How Intelligent this citizen is.,ZeroDecimalFloat,3d5,0
 Wisdom,Wisdom,Wisdom,How Wise this citizen is.,ZeroDecimalFloat,3d5,0
 Charisma,Charisma,Charisma,How Charismatic this citizen is.,ZeroDecimalFloat,3d5,0
-PlantSkill,PlantSkill,Plant Skill,How familiar this citizen is with Plants,ZeroDecimalFloat,Zero,0
-FoodSkill,FoodSkill,Food Skill,How good this citizen is with Food,ZeroDecimalFloat,Zero,0
+PlantSkill,PlantSkill,Plant Skill,How familiar this citizen is with Plants,ZeroDecimalFloat,1,0
+FoodSkill,FoodSkill,Food Skill,How good this citizen is with Food,ZeroDecimalFloat,1,0
 Gender,Gender,Gender,What Gender this citizen has.,Text,pickGender,0
-StoneSkill,StoneSkill,Stone Skill,How familiar this citizen is with stone,ZeroDecimalFloat,Zero,0
-MetalSkill,MetalSkill,Metal Skill,How familiar this citizen is with metal,ZeroDecimalFloat,Zero,0
+StoneSkill,StoneSkill,Stone Skill,How familiar this citizen is with stone,ZeroDecimalFloat,1,0
+MetalSkill,MetalSkill,Metal Skill,How familiar this citizen is with metal,ZeroDecimalFloat,1,0
 ,0,0,0,0,0,0
 ,0,0,0,0,0,0
