@@ -29,47 +29,47 @@ Bread,Bread,Bread,6,"Delicious Bread, providing sustenance to your citizens.
 Baked in the Bakery from Flour.
 
 Delivered to the Inn to feed your citizens.",breadIcon,bread,200,0,0
-GoldOre,GoldOre,Gold Ore,7,"Rocks with a few specks of gold in them.
+GoldOre,GoldOre,Gold Ore,8,"Rocks with a few specks of gold in them.
 
 Mined by a goldminer from gold veins.
 
 Melted into golden coins in the Mint.",goldoreIcon,default,74,0,0
-IronOre,IronOre,Iron Ore,8,"Reddish rocks that taste rusty.
+IronOre,IronOre,Iron Ore,9,"Reddish rocks that taste rusty.
 
 Mined by an ironminer from iron veins.
 
 Melted into iron bars in the iron smeltery.",ironoreIcon,default,38,0,0
-Coal,Coal,Coal,9,"Black, flammable rocks.
+Coal,Coal,Coal,7,"Black, flammable rocks.
 
 Mined by a coalminer from a coal deposit.
 
 Used to to fire the cauldrons in the mint and the iron smeltery.",coalIcon,default,75,0,0
-Iron,Iron,Iron,10,"Heavy Iron Bars.
+Iron,Iron,Iron,11,"Heavy Iron Bars.
 
 Melted from iron ore with coal in the Iron Smeltery.
 
 Used in the construction of the Palace.",ironIcon,default,39,0,0
-GoldCoins,GoldCoins,Gold Coins,11,"Precisely weighted golden coins.
+GoldCoins,GoldCoins,Gold Coins,10,"Precisely weighted golden coins.
 
 Melted from gold ore with coal, and pressed into shape in the mint.
 
 Used to educate Citizens in the school, and in the construction of the Palace.",goldCoinsIcon,goldCoins,250,0,0
-Wine,Wine,Wine,12,"Fermented Grape juice, sometimes referred to blood of the gods.
+Wine,Wine,Wine,13,"Fermented Grape juice, sometimes referred to blood of the gods.
 
 Made in the Vineyard.
 
 Delivered to the Inn to feed your citizens.",defaultIcon,default,197,0,0
-HandAxe,HandAxe,Hand Axe,13,"A small axe sharp enough to disarm a man.
+HandAxe,HandAxe,Hand Axe,12,"A small axe sharp enough to disarm a man.
 
 Made in Weapons workshop from Lumber.
 
 Used in construction of the Palace.",handAxeIcon,default,40,0,0
-Fish,Fish,Fish,14,"Sweetwater fish, freshly caught.
+Fish,Fish,Fish,15,"Sweetwater fish, freshly caught.
 
 Caught in the Fisher's Hut.
 
 Delivered to the Inn to feed your citizens.",defaultIcon,default,199,0,0
-Sausages,Sausages,Sausages,15,"Pork Sausages, a hearty meal.
+Sausages,Sausages,Sausages,14,"Pork Sausages, a hearty meal.
 
 Made at the Butcher's from Pigs.
 

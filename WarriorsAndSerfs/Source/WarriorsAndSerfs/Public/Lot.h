@@ -162,7 +162,6 @@ public:
 
 	//Update ui that has already spawned
 	//uiToUpdate describes which UI element to update (to save performance)
-	//EXCEPTION: To update stockpiles, please use UpdateActiveUIStockpile()!
 	UFUNCTION(BlueprintImplementableEvent, Category = UI)
 	void UpdateActiveUI(FName uiToUpdate);
 

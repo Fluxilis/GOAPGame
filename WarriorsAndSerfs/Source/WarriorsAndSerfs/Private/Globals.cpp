@@ -6,6 +6,16 @@ FItemAmount::FItemAmount()
 {
 }
 
+FFloatName::FFloatName()
+{
+}
+
+FFloatName::FFloatName(FName n, float f)
+{
+	name = n;
+	value = f;
+}
+
 FDTS_Occupation::FDTS_Occupation()
 {
 }
@@ -200,3 +210,9 @@ FText UGlobals::GetStatDisplayText(FSubjectStatValue subjectStatVal)
 	return FText::FromString(failedText);
 }
 
+
+TArray<FFloatName> UGlobals::SortFloatNameArray(TArray<FFloatName> arrayToSort)
+{
+	arrayToSort.Sort();
+	return arrayToSort;
+}

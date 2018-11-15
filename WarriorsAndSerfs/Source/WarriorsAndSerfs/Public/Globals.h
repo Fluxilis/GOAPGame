@@ -60,6 +60,25 @@ public:
 	int amount;
 };
 
+//a simple struct that contains an FName and float.
+USTRUCT(BlueprintType)
+struct FFloatName
+{
+	GENERATED_BODY()
+
+public:
+	FFloatName();
+	FFloatName(FName n, float f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName name;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float value;
+
+	FORCEINLINE bool operator<(const FFloatName& other) const { return value < other.value; };
+};
+
 //The different stats a subject can have (attributes(?), skills, other(?)
 USTRUCT(BlueprintType)
 struct FDTS_SubjectStat: public FTableRowBase
@@ -261,6 +280,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	static FText GetStatDisplayText(FSubjectStatValue subjectStatVal);
 
+	//returns a new array, sorted by value of the float
+	UFUNCTION(BlueprintCallable)
+	static TArray<FFloatName> SortFloatNameArray(TArray<FFloatName> arrayToSort);
 };
 
 

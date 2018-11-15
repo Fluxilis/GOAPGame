@@ -20,16 +20,16 @@ In the Weapons Workshop, the Carpenter makes Axes out of Lumber.",Carpenter,carp
 Forester,Forester,Forester,5,100,"The forester works in the foresting lodge building.
 
 The forester plants trees which can be chopped down by Lumberjacks.",Forester,foresterIcon,default,"((itemType=GoldCoins,amount=1))",0
-Farmer,Farmer,Farmer,6,100,"The farmer works in the Farm building.
+Farmer,Farmer,Farmer,7,100,"The farmer works in the Farm building.
 
 The farmer will grow wheat and harvest them once they are fully grown, and turn them into Grain.",Farmer,farmerIcon,default,"((itemType=GoldCoins,amount=1))",0
-Miller,Miller,Miller,7,100,"The miller works in the Mill building.
+Miller,Miller,Miller,8,100,"The miller works in the Mill building.
 
 The miller grinds grain into flour.",Miller,millerIcon,default,"((itemType=GoldCoins,amount=1))",0
-Baker,Baker,Baker,8,100,"The baker works in the Bakery building.
+Baker,Baker,Baker,9,100,"The baker works in the Bakery building.
 
 The baker bakes delicious bread from flour.",Baker,bakerIcon,default,"((itemType=GoldCoins,amount=1))",0
-Mason,Mason,Mason,9,100,"The mason works in the Quarry building.
+Mason,Mason,Mason,6,100,"The mason works in the Quarry building.
 
 The mason will mine Granite rocks until they are exhausted.",Mason,masonIcon,default,"((itemType=GoldCoins,amount=1))",0
 Miner,Miner,Miner,10,100,"The miner works in the Gold, Iron and Coal Mines.
