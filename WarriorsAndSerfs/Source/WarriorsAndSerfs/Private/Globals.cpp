@@ -136,7 +136,7 @@ UDataTable* UGlobals::GetUDatatable(const FString& Path)
 float UGlobals::CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FName workType)
 {
 	//stat importances for this workType
-	TArray<FWorkSpeedStatImportance> statImportances = GetUDatatable(WORKTYPESDATATABLEPATH)->FindRow<FDTS_WorkType>(workType, TEXT(""))->StatImportances;	
+	TArray<FWorkSpeedStatImportance> statImportances = GetUDatatable(WORKTYPESDATATABLEPATH)->FindRow<FDTS_WorkType>(workType, TEXT(""))->StatImportances;
 
 	//base speed
 	float totalSpeed = 100;
@@ -166,6 +166,11 @@ float UGlobals::CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FNam
 FText UGlobals::GetStatDisplayText(FSubjectStatValue subjectStatVal)
 {
 	FDTS_SubjectStat* subjectStat = GetUDatatable(SUBJECTSTATSDATATABLEPATH)->FindRow<FDTS_SubjectStat>(subjectStatVal.StatName, TEXT(""));
+	if (subjectStat == nullptr || !subjectStat)
+	{
+		//could not find this stat in the dt
+		return FText::FromString(FString("Could not find subjectStat in datatable: ").Append(subjectStatVal.StatName.ToString()));
+	}
 
 	FName statDisplayType = subjectStat->DisplayType;
 	FString statValue = subjectStatVal.StatValue;

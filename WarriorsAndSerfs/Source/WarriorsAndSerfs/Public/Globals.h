@@ -73,6 +73,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName StatName;
 
+	//where in Lists (eg subject UI) this stat should be displayed
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int OrderInLists;
+
 	//stat display name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText DisplayName;

@@ -138,8 +138,7 @@ UDataTable* ASubject::GetSubjectStatsDatatable()
 
 FName ASubject::ChooseOccupation_Implementation()
 {
-	UDataTable* occupationsDataTable = GetOccupationsDatatable();
-	
+	UDataTable* occupationsDataTable = GetOccupationsDatatable();	
 	if (occupationsDataTable == nullptr || !occupationsDataTable)
 	{
 		printCritical("Subject.cpp ChooseOccupation did not find Subject Datatable!");
@@ -158,6 +157,11 @@ TArray<FName> ASubject::GetFavouredOccupations()
 //if initialiseOverrideAllStats is set to false, will generate new values for every stat that doesn't have a value.
 void ASubject::InitialiseSubjectStats()
 {
+	if (initialiseOverrideAllStats)
+	{
+		statsMap.Empty();
+	}
+
 	UDataTable* statsTable = GetSubjectStatsDatatable();
 	TArray<FName> rowNames = statsTable->GetRowNames();
 	for (int i = 0; i < rowNames.Num(); i++)
@@ -183,6 +187,12 @@ FString ASubject::InitSubjectStat(FName statName)
 
 	UDataTable* statsTable = GetSubjectStatsDatatable();
 	FDTS_SubjectStat* stats = statsTable->FindRow<FDTS_SubjectStat>(statName, TEXT(""));
+	if (stats == nullptr || !stats)
+	{
+		//could not find this stat in the dt
+		printCritical("InitSubjectStat Could not find subjectStat in datatable!");
+		return FString("Could not find subjectStat in datatable: ").Append(statName.ToString());
+	}
 
 	if (stats->InitialValue == FName(TEXT("1")))
 	{
