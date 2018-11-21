@@ -183,4 +183,8 @@ public:
 	//returns initiated stat for this type of stat (can be random within limits, or defined...)
 	UFUNCTION(BlueprintCallable)
 		FString InitSubjectStat(FName statName);
+
+	//calculates this subject's workspeed at workType
+	UFUNCTION(BlueprintCallable)
+		float CalculateWorkspeed(FName workType);
 };

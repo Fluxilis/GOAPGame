@@ -215,3 +215,9 @@ FString ASubject::InitSubjectStat(FName statName)
 	failedString.Append(stats->InitialValue.ToString());
 	return failedString;
 }
+
+
+float ASubject::CalculateWorkspeed(FName workType)
+{
+	return UGlobals::CalculateWorkspeed(statsMap, workType);
+}
