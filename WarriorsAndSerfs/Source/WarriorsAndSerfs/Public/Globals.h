@@ -215,6 +215,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText HelpText;
 
+	//how long this workType takes to execute at factor 100%
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float BaseDuration;
+
 	//stat value
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FWorkSpeedStatImportance> StatImportances;
@@ -274,7 +278,7 @@ public:
 
 	//Calculates workspeed of a certain workType with a certain skill/statset (ie for a certain citizen)
 	UFUNCTION(BlueprintCallable)
-	static float CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FName workType);
+	static float CalculateWorkDuration(TMap<FName, FSubjectStatValue> statsMap, FName workType, float overrideBaseSpeed = -1000);
 
 	//returns a Text with statValue, formatted in the way of this subjectStat
 	UFUNCTION(BlueprintCallable)

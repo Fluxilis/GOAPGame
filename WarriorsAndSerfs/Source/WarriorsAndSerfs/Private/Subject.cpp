@@ -217,7 +217,7 @@ FString ASubject::InitSubjectStat(FName statName)
 }
 
 
-float ASubject::CalculateWorkspeed(FName workType)
+float ASubject::CalculateWorkDuration(FName workType, float overrideBaseDuration)
 {
-	return UGlobals::CalculateWorkspeed(statsMap, workType);
+	return UGlobals::CalculateWorkDuration(statsMap, workType, overrideBaseDuration);
 }

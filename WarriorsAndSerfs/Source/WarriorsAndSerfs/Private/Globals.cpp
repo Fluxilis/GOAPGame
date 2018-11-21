@@ -2,6 +2,9 @@
 
 #include "Globals.h"
 
+//print to screen macro
+#define printCritical(text) if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 600.0, FColor::Red,text)
+
 FItemAmount::FItemAmount()
 {
 }
@@ -142,15 +145,35 @@ UDataTable* UGlobals::GetUDatatable(const FString& Path)
 	return Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), NULL, *Path));
 }
 
-
-float UGlobals::CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FName workType)
+/*
+* statsMap is the statset with which the speed for this workType should be calculated
+* workType is the workType to calculate the speed of
+* overrideBaseDuration is in case of crafting, where the baseDuration
+*
+*/
+float UGlobals::CalculateWorkDuration(TMap<FName, FSubjectStatValue> statsMap, FName workType, float overrideBaseDuration)
 {
+	FDTS_WorkType* theWorkType = GetUDatatable(WORKTYPESDATATABLEPATH)->FindRow<FDTS_WorkType>(workType, TEXT(""));
+	if (theWorkType == nullptr || !theWorkType)
+	{
+		//could not find this workType in the dt
+		printCritical("Could not find a certain workType in the DT!");
+		return 1.0;
+	}
+
 	//stat importances for this workType
-	TArray<FWorkSpeedStatImportance> statImportances = GetUDatatable(WORKTYPESDATATABLEPATH)->FindRow<FDTS_WorkType>(workType, TEXT(""))->StatImportances;
+	TArray<FWorkSpeedStatImportance> statImportances = theWorkType->StatImportances;
 
 	//base speed
-	float totalSpeed = 100;
+	float baseSpeed = theWorkType->BaseDuration;
 
+	if (overrideBaseDuration != -1000)
+	{
+		baseSpeed = overrideBaseDuration;
+	}
+
+	float totalImpact = 1.0;
+	
 	//do for every relevant stat for this workType
 	for (int i = 0; i < statImportances.Num(); i++)
 	{
@@ -162,15 +185,25 @@ float UGlobals::CalculateWorkspeed(TMap<FName, FSubjectStatValue> statsMap, FNam
 		}
 
 		//workspeed for this skill Level
-		int statValue = GetUDatatable(SKILLLEVELSDATATABLEPATH)->FindRow<FDTS_SkillLevel>(FName(*stat), TEXT(""))->Percentage;
+		FDTS_SkillLevel* currentSkillLevel = GetUDatatable(SKILLLEVELSDATATABLEPATH)->FindRow<FDTS_SkillLevel>(FName(*stat), TEXT(""));
+		if (currentSkillLevel == nullptr || !currentSkillLevel)
+		{
+			//could not find this skillLevel in the dt
+			printCritical("Could not find a certain skillLevel in the DT!");
+			return 1.0;
+		}
+
+		int statValue = currentSkillLevel->Percentage;
+
 		//importance of the skill for the workType - how much the total speed is influenced by the skill
 		float importance = statImportances[i].StatImportance;
 		
-		float totalImpact = 100 - ((100 - statValue) * importance / 100);
-		totalSpeed = totalSpeed * (totalImpact / 100);
+		float statImpact = 100 - ((100 - statValue) * importance / 100);
+		totalImpact = totalImpact * (statImpact / 100);
 	}
 
-	return totalSpeed;
+	totalImpact = totalImpact * (FCString::Atoi(*(statsMap.Find(TEXT("GlobalWorkSpeed"))->StatValue)) / 100);
+	return baseSpeed * (totalImpact == 0 ? 0 : (1/totalImpact)); //1/total impact because I want duration to reduce with high Impact and increase with low impact. (confusion because I changed from "workSpeed" to "workDuration")
 }
 
 FText UGlobals::GetStatDisplayText(FSubjectStatValue subjectStatVal)
@@ -180,6 +213,7 @@ FText UGlobals::GetStatDisplayText(FSubjectStatValue subjectStatVal)
 	{
 		//could not find this stat in the dt
 		return FText::FromString(FString("Could not find subjectStat in datatable: ").Append(subjectStatVal.StatName.ToString()));
+		printCritical("Could not find a certain subjectStat in the DT!");
 	}
 
 	FName statDisplayType = subjectStat->DisplayType;

@@ -186,5 +186,5 @@ public:
 
 	//calculates this subject's workspeed at workType
 	UFUNCTION(BlueprintCallable)
-		float CalculateWorkspeed(FName workType);
+	float CalculateWorkDuration(FName workType, float overrideBaseDuration = -1000);
 };
