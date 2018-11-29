@@ -1,6 +1,4 @@
-
-
-StatImportances (up to 10 factors):
+SuggestedSkills (copied from worktypes StatImportances)
 
 ="("
 &IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2)));
@@ -36,13 +34,12 @@ StatImportances (up to 10 factors):
 &")"
 
 
-
-Match StatImportances
+Match SuggestedSkills
 
 =INDIRECT(
 	ADDRESS(
-		MATCH(HumanReadable.$E2;StatImportances.$A$1:$A$500;0);
-		MATCH("Importances";StatImportances.$A$1:$H$1;0);
-			1;1;"StatImportances"
+		MATCH(HumanReadable.$J2;SuggestedSkills.$A$1:$A$500;0);
+		MATCH("Importances";SuggestedSkills.$A$1:$H$1;0);
+			1;1;"SuggestedSkills"
 	)
 )

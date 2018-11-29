@@ -79,6 +79,24 @@ public:
 	FORCEINLINE bool operator<(const FFloatName& other) const { return value < other.value; };
 };
 
+//How important this Stat is for the workspeed
+USTRUCT(BlueprintType)
+struct FStatImportance
+{
+	GENERATED_BODY()
+
+public:
+	FStatImportance();
+
+	//stat name (must match a stat of SubjectStats)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName StatName;
+
+	//stat value
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float StatImportance;
+};
+
 //The different stats a subject can have (attributes(?), skills, other(?)
 USTRUCT(BlueprintType)
 struct FDTS_SubjectStat: public FTableRowBase
@@ -173,26 +191,13 @@ public:
 	//what items this occupation costs to educate (from a default / thin air)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FItemAmount> EducateCost;
+
+	//which subject stats are recommended for this occupation and how much they factor in (relevant for choosing occupations)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FStatImportance> SuggestedSkills;
 };
 
 
-//How important this Stat is for the workspeed
-USTRUCT(BlueprintType)
-struct FWorkSpeedStatImportance
-{
-	GENERATED_BODY()
-
-public:
-	FWorkSpeedStatImportance();
-
-	//stat name (must match a stat of SubjectStats)
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FName StatName;
-
-	//stat value
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float StatImportance;
-};
 
 //struct for work datatable 
 USTRUCT(BlueprintType)
@@ -221,7 +226,7 @@ public:
 
 	//stat value
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FWorkSpeedStatImportance> StatImportances;
+	TArray<FStatImportance> StatImportances;
 };
 
 //struct for skillLevels datatable (this applies to all skills)

@@ -23,7 +23,7 @@ FDTS_Occupation::FDTS_Occupation()
 {
 }
 
-FWorkSpeedStatImportance::FWorkSpeedStatImportance()
+FStatImportance::FStatImportance()
 {
 }
 
@@ -164,7 +164,7 @@ float UGlobals::CalculateWorkDuration(TMap<FName, FSubjectStatValue> statsMap, F
 	}
 
 	//stat importances for this workType
-	TArray<FWorkSpeedStatImportance> statImportances = theWorkType->StatImportances;
+	TArray<FStatImportance> statImportances = theWorkType->StatImportances;
 
 	//base speed
 	float baseSpeed = theWorkType->BaseDuration;
