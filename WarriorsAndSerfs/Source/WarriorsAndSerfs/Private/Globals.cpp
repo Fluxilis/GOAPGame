@@ -150,6 +150,8 @@ UDataTable* UGlobals::GetUDatatable(const FString& Path)
 * workType is the workType to calculate the speed of
 * overrideBaseDuration is in case of crafting, where the baseDuration
 *
+* the calculation in this makes it so that the final multiplier is >= the lowest multiplier and <= the highest multiplier.
+* if skill level gives 140% speed, and importance is 50% (0.5), the skill will affect the speed by 120% ((140%-100%) x 0.5 + 100).
 */
 float UGlobals::CalculateWorkDuration(TMap<FName, FSubjectStatValue> statsMap, FName workType, float overrideBaseDuration)
 {
@@ -172,8 +174,8 @@ float UGlobals::CalculateWorkDuration(TMap<FName, FSubjectStatValue> statsMap, F
 		baseSpeed = overrideBaseDuration;
 	}
 
-	float totalImpact = 1.0;
-	
+	float impactCumul = 0; //cumulative workspeed % multipliers
+
 	//do for every relevant stat for this workType
 	for (int i = 0; i < statImportances.Num(); i++)
 	{
@@ -198,12 +200,15 @@ float UGlobals::CalculateWorkDuration(TMap<FName, FSubjectStatValue> statsMap, F
 		//importance of the skill for the workType - how much the total speed is influenced by the skill
 		float importance = statImportances[i].StatImportance;
 		
-		float statImpact = 100 - ((100 - statValue) * importance / 100);
-		totalImpact = totalImpact * (statImpact / 100);
+		float statImpact = 100 - ((100 - statValue) * importance / 100); //% impact this stat has on the work (ie total % if only this stat was counted)
+		impactCumul += statImpact;
 	}
 
-	totalImpact = totalImpact * (FCString::Atoi(*(statsMap.Find(TEXT("GlobalWorkSpeed"))->StatValue)) / 100);
-	return baseSpeed * (totalImpact == 0 ? 0 : (1/totalImpact)); //1/total impact because I want duration to reduce with high Impact and increase with low impact. (confusion because I changed from "workSpeed" to "workDuration")
+	impactCumul += FCString::Atoi(*(statsMap.Find(TEXT("GlobalWorkSpeed"))->StatValue)); //GlobalWorkSpeed applies to all workspeeds
+
+	float finalMultiplier = (impactCumul / (statImportances.Num() + 1) / 100 ); // divide by number of important stats (+1 because GlobalWorkSpeed applies to all workspeeds), divide by 100 to go from percentage to multiplier
+
+	return baseSpeed * (finalMultiplier == 0 ? 0 : (1/ finalMultiplier)); //1/total impact because I want duration to reduce with high finalMultiplier and increase with low finalMultiplier. (confusion because I changed from "workSpeed" to "workDuration")
 }
 
 FText UGlobals::GetStatDisplayText(FSubjectStatValue subjectStatVal)
