@@ -19,11 +19,16 @@ FFloatName::FFloatName(FName n, float f)
 	value = f;
 }
 
-FDTS_Occupation::FDTS_Occupation()
+FStatImportance::FStatImportance()
 {
 }
 
-FStatImportance::FStatImportance()
+FHarvestJobBool::FHarvestJobBool()
+{
+
+}
+
+FDTS_Occupation::FDTS_Occupation()
 {
 }
 

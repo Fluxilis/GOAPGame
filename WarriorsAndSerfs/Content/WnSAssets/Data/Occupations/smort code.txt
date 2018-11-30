@@ -43,3 +43,24 @@ Match SuggestedSkills
 			1;1;"SuggestedSkills"
 	)
 )
+
+
+HarvesterJobTypes
+
+="("
+&"(harvestingJobType="&C$1&", doesJob="&C2&"),"
+&"(harvestingJobType="&D$1&", doesJob="&D2&"),"
+&"(harvestingJobType="&E$1&", doesJob="&E2&"),"
+&"(harvestingJobType="&F$1&", doesJob="&F2&")"
+&")" 
+
+
+Match HarvesterJobTypes
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.$K2;HarvesterJobTypes.$A$1:$A$500;0);
+		MATCH("HarvesterJobTypes";HarvesterJobTypes.$A$1:$H$1;0);
+			1;1;"HarvesterJobTypes"
+	)
+)

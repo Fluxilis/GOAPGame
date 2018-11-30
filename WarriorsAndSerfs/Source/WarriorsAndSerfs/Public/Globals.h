@@ -97,6 +97,22 @@ public:
 	float StatImportance;
 };
 
+//a simple struct that contains an EHarvestingJobType and bool - wether a harvester does this jobtype or not. (eg foresters do not harvest or tend or polish, they only plant.)
+USTRUCT(BlueprintType)
+struct FHarvestJobBool
+{
+	GENERATED_BODY()
+
+public:
+	FHarvestJobBool();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EHarvestingJobType harvestingJobType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool doesJob;
+};
+
 //The different stats a subject can have (attributes(?), skills, other(?)
 USTRUCT(BlueprintType)
 struct FDTS_SubjectStat: public FTableRowBase
@@ -195,6 +211,10 @@ public:
 	//which subject stats are recommended for this occupation and how much they factor in (relevant for choosing occupations)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FStatImportance> SuggestedSkills;
+
+	//in case of a harvesting occupation - which of the harvestingJobTypes does the occupation include? (Plant, Tend, Harvest, Polish)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FHarvestJobBool> HarvesterJobTypes;
 };
 
 
