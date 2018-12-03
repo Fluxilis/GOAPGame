@@ -157,8 +157,9 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void SubjectDie();
 
+	//THERE IS AN ISSUE WITH THIS I seem to have implemented this very prematurely, everything related to this was using "Occupation" instead of "subject" before I changed it -  I don't think this piece of code does anything implemented though..
 	//returns the Occupations Datatable
-	UDataTable* GetOccupationsDatatable();
+	UDataTable* GetSubjectsDatatable();
 
 	//returns the SubjectStats Datatable
 	UDataTable* GetSubjectStatsDatatable();
@@ -187,4 +188,8 @@ public:
 	//calculates this subject's workspeed at workType
 	UFUNCTION(BlueprintCallable)
 	float CalculateWorkDuration(FName workType, float overrideBaseDuration = -1000);
+
+	//calculates how suitable this subject is for the specified occupation.
+	UFUNCTION(BlueprintCallable)
+		float CalculateOccupationSuitability(FName occupationType);
 };

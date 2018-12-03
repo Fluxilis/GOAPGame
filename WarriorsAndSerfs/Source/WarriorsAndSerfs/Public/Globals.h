@@ -12,7 +12,8 @@
 #define UPDATEUIIDALL TEXT("All")
 #define UPDATEUIIDALLITEMS TEXT("AllItems")
 
-#define OCCUPATIONSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'"
+#define SUBJECTSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'"
+#define OCCUPATIONSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/Occupations/DT_Occupations.DT_Occupations'"
 #define SUBJECTSTATSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/SubjectStats/DT_SubjectStats.DT_SubjectStats'"
 #define WORKTYPESDATATABLEPATH "DataTable'/Game/WnSAssets/Data/WorkTypes/DT_WorkTypes.DT_WorkTypes'"
 #define SKILLLEVELSDATATABLEPATH "DataTable'/Game/WnSAssets/Data/SkillLevels/DT_SkillLevels.DT_SkillLevels'"
@@ -304,6 +305,10 @@ public:
 	//Calculates workspeed of a certain workType with a certain skill/statset (ie for a certain citizen)
 	UFUNCTION(BlueprintCallable)
 	static float CalculateWorkDuration(TMap<FName, FSubjectStatValue> statsMap, FName workType, float overrideBaseSpeed = -1000);
+
+	//Calculates suitability for a certain occupation with a certain skill/statset (ie for a certain citizen)
+	UFUNCTION(BlueprintCallable)
+	static float CalculateOccupationSuitability(TMap<FName, FSubjectStatValue> statsMap, FName occupationType);
 
 	//returns a Text with statValue, formatted in the way of this subjectStat
 	UFUNCTION(BlueprintCallable)

@@ -216,6 +216,60 @@ float UGlobals::CalculateWorkDuration(TMap<FName, FSubjectStatValue> statsMap, F
 	return baseSpeed * (finalMultiplier == 0 ? 0 : (1/ finalMultiplier)); //1/total impact because I want duration to reduce with high finalMultiplier and increase with low finalMultiplier. (confusion because I changed from "workSpeed" to "workDuration")
 }
 
+// adapted from UGlobals::CalculateWorkDuration()
+// while the suggested skills don't match the final workspeeds perfectly, the match is close enough (if the suggested skills are chosen properly).
+float UGlobals::CalculateOccupationSuitability(TMap<FName, FSubjectStatValue> statsMap, FName occupationType)
+{
+	FDTS_Occupation* theOccupationType = GetUDatatable(OCCUPATIONSDATATABLEPATH)->FindRow<FDTS_Occupation>(occupationType, TEXT(""));
+	if (theOccupationType == nullptr || !theOccupationType)
+	{
+		//could not find this occupation in the dt
+		printCritical("UGlobals::CalculateOccupationSuitability could not find a certain occupation in the DT!");
+		return 1.0;
+	}
+
+	//suggested skills for this occupation
+	TArray<FStatImportance> statImportances = theOccupationType->SuggestedSkills;
+
+
+	float impactCumul = 0; //cumulative suitability % multipliers
+
+	//do for every suggested skill for this occupation
+	for (int i = 0; i < statImportances.Num(); i++)
+	{
+		FString stat = statsMap.Find(statImportances[i].StatName)->StatValue;
+		if (stat == "0")
+		{
+			//if level of skill is "incapable", suitability is zero.
+			return 0;
+		}
+
+		//workspeed for this skill Level
+		FDTS_SkillLevel* currentSkillLevel = GetUDatatable(SKILLLEVELSDATATABLEPATH)->FindRow<FDTS_SkillLevel>(FName(*stat), TEXT(""));
+		if (currentSkillLevel == nullptr || !currentSkillLevel)
+		{
+			//could not find this skillLevel in the dt
+			printCritical("UGlobals::CalculateOccupationSuitability Could not find a certain skillLevel in the DT!");
+			return 1.0;
+		}
+
+		int statValue = currentSkillLevel->Percentage;
+
+		//importance of the skill for the occupation - how much the total suitability is influenced by the skill
+		float importance = statImportances[i].StatImportance;
+
+		float statImpact = 100 - ((100 - statValue) * importance / 100); //% impact this stat has on the suitability (ie total % if only this stat was counted)
+		impactCumul += statImpact;
+	}
+
+	impactCumul += FCString::Atoi(*(statsMap.Find(TEXT("GlobalWorkSpeed"))->StatValue)); //GlobalWorkSpeed applies to all occupations
+
+	float finalMultiplier = (impactCumul / (statImportances.Num() + 1) / 100); // divide by number of important stats (+1 because GlobalWorkSpeed applies to all occupations), divide by 100 to go from percentage to multiplier
+
+	return 1.0 * finalMultiplier;
+}
+
+
 FText UGlobals::GetStatDisplayText(FSubjectStatValue subjectStatVal)
 {
 	FDTS_SubjectStat* subjectStat = GetUDatatable(SUBJECTSTATSDATATABLEPATH)->FindRow<FDTS_SubjectStat>(subjectStatVal.StatName, TEXT(""));

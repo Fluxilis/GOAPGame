@@ -123,9 +123,9 @@ void ASubject::ReduceFood(float x)
 
 }
 
-UDataTable* ASubject::GetOccupationsDatatable()
+UDataTable* ASubject::GetSubjectsDatatable()
 {
-	return UGlobals::GetUDatatable(OCCUPATIONSDATATABLEPATH);
+	return UGlobals::GetUDatatable(SUBJECTSDATATABLEPATH);
 	//return UGlobals::GetUDatatable("DataTable'/Game/WnSAssets/Data/Subjects/DT_Subjects.DT_Subjects'");
 }
 
@@ -138,19 +138,19 @@ UDataTable* ASubject::GetSubjectStatsDatatable()
 
 FName ASubject::ChooseOccupation_Implementation()
 {
-	UDataTable* occupationsDataTable = GetOccupationsDatatable();	
-	if (occupationsDataTable == nullptr || !occupationsDataTable)
+	UDataTable* subjectsDataTable = GetSubjectsDatatable();	
+	if (subjectsDataTable == nullptr || !subjectsDataTable)
 	{
 		printCritical("Subject.cpp ChooseOccupation did not find Subject Datatable!");
 	}
 
-	int random = FMath::RandRange(0, occupationsDataTable->GetRowNames().Num() - 1);	
-	return occupationsDataTable->GetRowNames()[random];
+	int random = FMath::RandRange(0, subjectsDataTable->GetRowNames().Num() - 1);	
+	return subjectsDataTable->GetRowNames()[random];
 }
 
 TArray<FName> ASubject::GetFavouredOccupations()
 {
-	return GetOccupationsDatatable()->GetRowNames();
+	return GetSubjectsDatatable()->GetRowNames();
 }
 
 //if initialiseOverrideAllStats is set to true, will generate new values for every stat
@@ -221,3 +221,9 @@ float ASubject::CalculateWorkDuration(FName workType, float overrideBaseDuration
 {
 	return UGlobals::CalculateWorkDuration(statsMap, workType, overrideBaseDuration);
 }
+
+float ASubject::CalculateOccupationSuitability(FName occupationType)
+{
+	return UGlobals::CalculateOccupationSuitability(statsMap, occupationType);
+}
+
