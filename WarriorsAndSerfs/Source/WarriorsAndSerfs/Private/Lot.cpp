@@ -182,6 +182,32 @@ void ALot::AddStockpile(FName item, EStockpileType type, int maxStorage)
 	UpdateActiveUI(UPDATEUIIDALLITEMS);
 }
 
+
+void ALot::ReduceStockpileSize(FName item, int amount)
+{
+	FStockpile* pile = GetStockpile(item);
+	if (pile == nullptr || !pile)
+	{
+		//no stockpile of this item type in this building.
+		printCritical("ERROR: tried to reduce stockpileSize of item but didn't have stockpile!!");
+		return;
+	}
+
+	//add one item.
+	pile->maxStorage -= amount;
+
+	//if stockpile size would reach 0, remove stockpile entirely.
+	if (pile->maxStorage <= 0)
+	{
+		RemoveStockpile(item);
+	}
+	else
+	{
+		UpdateActiveUI(item);
+	}
+
+}
+
 void ALot::RemoveStockpile(FName item)
 {
 	//find the right stockpile
@@ -193,11 +219,10 @@ void ALot::RemoveStockpile(FName item)
 			//found stockpile. Remove.
 
 			stockpiles.RemoveAt(i);
+			UpdateActiveUI(item);
 			return;
 		}
 	}
-
-	UpdateActiveUI(item);
 }
 
 //DeliverySystem

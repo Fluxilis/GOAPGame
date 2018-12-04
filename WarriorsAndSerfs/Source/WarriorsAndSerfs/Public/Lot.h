@@ -169,8 +169,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddStockpile(FName item, EStockpileType type, int maxStorage);
 
+	//reduces the maxStored value of the item's stockpile
+	//used for constructionsites, when this item is used to fuel builderhits.
+	UFUNCTION(BlueprintCallable)
+	void ReduceStockpileSize(FName item, int amount);
+
 	//removes the stockpile from the list.
-	//used for constructionsites, when all materials of a kind have arrived to the site.
+	//used for constructionsites, when all materials of a kind have been used up for builderhits.
 	UFUNCTION(BlueprintCallable)
 	void RemoveStockpile(FName item);
 

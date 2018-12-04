@@ -139,22 +139,8 @@ bool UConstructionComponent::UseItem()
 			//remove item from stockpile
 			myLot->DeleteItem(itemAmt.itemType, 1);
 
-			FStockpile* pile = myLot->GetStockpile(itemAmt.itemType);
-			if (pile == nullptr || !pile)
-			{
-				//this should not be possible
-				printCritical("shouldNotHappen in ConstructionComponent::UseItem()");
-			}
-			else
-			{
-				//also reduce stockpilesize (because no more items are needed than the inital stockpile size)
-				pile->maxStorage -= 1;
-				//remove stockpile entirely if no more items of this type are needed
-				if (pile->maxStorage <= 0)
-				{
-					myLot->RemoveStockpile(itemAmt.itemType);
-				}
-			}
+			//also reduce stockpilesize (because no more items are needed than the inital stockpile size)
+			myLot->ReduceStockpileSize(itemAmt.itemType, 1);
 
 			itemsUsedUp++;
 
