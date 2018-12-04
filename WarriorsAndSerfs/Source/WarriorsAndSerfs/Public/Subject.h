@@ -154,8 +154,9 @@ public:
 	//Handles Subject death.
 	//Implemented in Bluprints
 	//May be overridden in every level of subjects (civilian, Housebased, Harvester...)
+	//set invisible to true for cases like switching occupation, where the subject should disappear functionally, but not as "death", because a copy is created. (this is pretty hacky I know)
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-	void SubjectDie();
+	void SubjectDie(bool invisible = false);
 
 	//THERE IS AN ISSUE WITH THIS I seem to have implemented this very prematurely, everything related to this was using "Occupation" instead of "subject" before I changed it -  I don't think this piece of code does anything implemented though..
 	//returns the Occupations Datatable
