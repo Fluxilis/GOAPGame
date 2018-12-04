@@ -35,6 +35,26 @@ SuggestedSkills (copied from worktypes StatImportances)
 
 
 Match SuggestedSkills
+(write nothing if would write (), because just () will create a defaulted item in the array)
+
+
+=IF(
+	INDIRECT(
+		ADDRESS(
+			MATCH(HumanReadable.$J2;SuggestedSkills.$A$1:$A$500;0);
+			MATCH("Importances";SuggestedSkills.$A$1:$H$1;0);
+				1;1;"SuggestedSkills"
+		)
+	)="()";
+	"";
+	INDIRECT(
+		ADDRESS(
+			MATCH(HumanReadable.$J2;SuggestedSkills.$A$1:$A$500;0);
+			MATCH("Importances";SuggestedSkills.$A$1:$H$1;0);
+				1;1;"SuggestedSkills"
+		)
+	)
+)
 
 =INDIRECT(
 	ADDRESS(
@@ -57,7 +77,7 @@ HarvesterJobTypes
 
 Match HarvesterJobTypes
 
-=INDIRECT(
+INDIRECT(
 	ADDRESS(
 		MATCH(HumanReadable.$K2;HarvesterJobTypes.$A$1:$A$500;0);
 		MATCH("HarvesterJobTypes";HarvesterJobTypes.$A$1:$H$1;0);

@@ -194,6 +194,10 @@ FString ASubject::InitSubjectStat(FName statName)
 		return FString("Could not find subjectStat in datatable: ").Append(statName.ToString());
 	}
 
+	if (stats->InitialValue == FName(TEXT("0")))
+	{
+		return "0";
+	}
 	if (stats->InitialValue == FName(TEXT("1")))
 	{
 		return "1";
@@ -224,6 +228,7 @@ float ASubject::CalculateWorkDuration(FName workType, float overrideBaseDuration
 
 float ASubject::CalculateOccupationSuitability(FName occupationType)
 {
+	//return -1.0;
 	return UGlobals::CalculateOccupationSuitability(statsMap, occupationType);
 }
 

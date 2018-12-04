@@ -225,7 +225,7 @@ float UGlobals::CalculateOccupationSuitability(TMap<FName, FSubjectStatValue> st
 	{
 		//could not find this occupation in the dt
 		printCritical("UGlobals::CalculateOccupationSuitability could not find a certain occupation in the DT!");
-		return 1.0;
+		return -1.0;
 	}
 
 	//suggested skills for this occupation

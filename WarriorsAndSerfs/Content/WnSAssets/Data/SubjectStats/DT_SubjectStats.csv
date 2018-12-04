@@ -10,3 +10,4 @@ PlantSkill,PlantSkill,9,Plant Skill,How familiar this citizen is with Plants,Ski
 FoodSkill,FoodSkill,10,Food Skill,How good this citizen is with Food,Skill,1
 StoneSkill,StoneSkill,11,Stone Skill,How familiar this citizen is with stone,Skill,1
 MetalSkill,MetalSkill,12,Metal Skill,How familiar this citizen is with metal,Skill,1
+NullSkill,NullSkill,0,DebugSkill,Will always be 0,Skill,0
