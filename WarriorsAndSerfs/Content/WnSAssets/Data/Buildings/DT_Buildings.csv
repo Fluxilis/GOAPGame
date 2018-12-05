@@ -88,7 +88,9 @@ A carpenter needs to work in the weapons workshop.",WeaponWorkshop,weaponWorksho
 Warehouse,Warehouse,Warehouse,3,600,None,2,1,"(materials=((itemType=Lumber,amount=5),(itemType=Stone,amount=7)),builderHits=90)","((itemType=Log,stockpileType=Warehouse,maxStorage=1000),(itemType=Lumber,stockpileType=Warehouse,maxStorage=1000),(itemType=HandAxe,stockpileType=Warehouse,maxStorage=1000),(itemType=Fish,stockpileType=Warehouse,maxStorage=1000),(itemType=Bread,stockpileType=Warehouse,maxStorage=1000),(itemType=Stone,stockpileType=Warehouse,maxStorage=1000),(itemType=GoldCoins,stockpileType=Warehouse,maxStorage=1000),(itemType=Wheat,stockpileType=Warehouse,maxStorage=1000),(itemType=Flour,stockpileType=Warehouse,maxStorage=1000),(itemType=IronOre,stockpileType=Warehouse,maxStorage=1000),(itemType=GoldOre,stockpileType=Warehouse,maxStorage=1000),(itemType=Coal,stockpileType=Warehouse,maxStorage=1000),(itemType=Iron,stockpileType=Warehouse,maxStorage=1000),(itemType=Wine,stockpileType=Warehouse,maxStorage=1000),(itemType=Sausages,stockpileType=Warehouse,maxStorage=1000))",0,0,#N/A,#N/A,"The Warehouse stores all of your items. 
 
 No one needs to work at the Warehouse.",Warehouse,warehouseIcon,default,,,,,,
-,0,0,0,0,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,0,,,,,,
+ResidentialHouse,ResidentialHouse,Residential House,1,400,None,0,0,"(materials=((itemType=Lumber,amount=3),(itemType=Stone,amount=4)),builderHits=55)",#N/A,0,0,#N/A,#N/A,"Through unexplained means, this is where citizens are made.
+
+This building provides shelter for up to 8 citizens, and creates new citizens until that limit is filled.",ResidentialHouse,residentialHouseIcon,default,,,,,,
 ,0,0,0,0,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,0,,,,,,
 ,0,0,0,0,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,0,,,,,,
 ,0,0,0,0,0,0,0,#N/A,#N/A,0,0,#N/A,#N/A,0,0,0,0,,,,,,
