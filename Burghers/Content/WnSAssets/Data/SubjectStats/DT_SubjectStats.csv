@@ -1,0 +1,13 @@
+Name,StatName,OrderInLists,DisplayName,Description,DisplayType,InitialValue
+GlobalWorkSpeed,GlobalWorkSpeed,1,Global Work Speed,How fast this citizen works in general,ZeroDecimalPercent,100
+Strength,Strength,3,Strength,"How Strong this citizen is, physically",Attribute,3d5
+Dexterity,Dexterity,4,Dexterity,How Dexterous this citizen is.,Attribute,3d5
+Constitution,Constitution,5,Constitution,How good this citizen's Constitution is.,Attribute,3d5
+Intelligence,Intelligence,6,Intelligence,How Intelligent this citizen is.,Attribute,3d5
+Wisdom,Wisdom,7,Wisdom,How Wise this citizen is.,Attribute,3d5
+Charisma,Charisma,8,Charisma,How Charismatic this citizen is.,Attribute,3d5
+PlantSkill,PlantSkill,9,Plant Skill,How familiar this citizen is with Plants,Skill,1
+FoodSkill,FoodSkill,10,Food Skill,How good this citizen is with Food,Skill,1
+StoneSkill,StoneSkill,11,Stone Skill,How familiar this citizen is with stone,Skill,1
+MetalSkill,MetalSkill,12,Metal Skill,How familiar this citizen is with metal,Skill,1
+NullSkill,NullSkill,0,DebugSkill,Will always be 0,Debug,0

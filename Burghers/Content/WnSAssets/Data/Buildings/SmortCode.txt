@@ -1,0 +1,301 @@
+
+NOTE!:
+- Column names might no longer be accurate, as I have been adding columns inbetween!
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+ConstructionRecipe:
+Writes the Human-Readable Columns into syntax correct text for the Unreal Datatable.
+--------------------------------------------------------------------------------------------------
+
+="(materials="
+&IF(AND(NOT(ISBLANK(D2));NOT(ISBLANK(E2)));	
+	"((itemType="&D2&",amount="&E2&")"
+	&IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2)));
+		",(itemType="&F2&",amount="&G2&")"
+		&IF(AND(NOT(ISBLANK(H2));NOT(ISBLANK(I2)));
+			",(itemType="&H2&",amount="&I2&")"
+			&IF(AND(NOT(ISBLANK(J2));NOT(ISBLANK(K2)));
+				",(itemType="&J2&",amount="&K2&")"
+				&IF(AND(NOT(ISBLANK(L2));NOT(ISBLANK(M2)));
+					",(itemType="&L2&",amount="&M2&"))";
+					")");
+				")");
+			")");
+		")");
+	"")
+&",builderHits="
+&IF(NOT(ISBLANK(C2))
+	;C2
+	;"0")
+&")"
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Display ConstructionRecipe in EXPORT Sheet
+Searches and displays the Recipe in the ConstructionRecipes Sheet for the Row with the Name of the recipe assigned to this type of building in the HumanReadable sheet.
+--------------------------------------------------------------------------------------------------
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.$F2;ConstructionRecipes.$A$1:$A$500;0);
+		MATCH("ConstructionRecipe";ConstructionRecipes.$A$1:$H$1;0);
+			1;1;"ConstructionRecipes"
+	)
+)
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Stockpiles:
+If C:E have a value 
+--------------------------------------------------------------------------------------------------
+
+=IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2));NOT(ISBLANK(E2)));
+	"((itemType="&C2&",stockpileType="&D2&",maxStorage="&E2&")"
+	&IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2));NOT(ISBLANK(H2)));
+		",(itemType="&F2&",stockpileType="&G2&",maxStorage="&H2&")"
+		&IF(AND(NOT(ISBLANK(I2));NOT(ISBLANK(J2));NOT(ISBLANK(K2)));
+			",(itemType="&I2&",stockpileType="&J2&",maxStorage="&K2&")"
+			&IF(AND(NOT(ISBLANK(L2));NOT(ISBLANK(M2));NOT(ISBLANK(N2)));
+				",(itemType="&L2&",stockpileType="&M2&",maxStorage="&N2&")"
+				&IF(AND(NOT(ISBLANK(O2));NOT(ISBLANK(P2));NOT(ISBLANK(Q2)));
+					",(itemType="&O2&",stockpileType="&P2&",maxStorage="&Q2&"))"
+					;
+					")")
+				;")")
+			;")")
+		;")")
+	;"")
+
+"(materials=" &IF(AND(NOT(ISBLANK(D2));NOT(ISBLANK(E2)));   "((itemType="&D2&",amount="&E2&")"  &IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2)));   ",(itemType="&F2&",amount="&G2&")"   &IF(AND(NOT(ISBLANK(H2));NOT(ISBLANK(I2)));    ",(itemType="&H2&",amount="&I2&")"    &IF(AND(NOT(ISBLANK(J2));NOT(ISBLANK(K2)));     ",(itemType="&J2&",amount="&K2&")"     &IF(AND(NOT(ISBLANK(L2));NOT(ISBLANK(M2)));      ",(itemType="&L2&",amount="&M2&"))";      ")");     ")");    ")");   ")");  "") &",builderHits=" &IF(NOT(ISBLANK(C2))  ;C2  ;"0") &")"
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Display Stockpiles in EXPORT Sheet
+--------------------------------------------------------------------------------------------------
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.$G2;Stockpiles.$A$1:$A$500;0);
+		MATCH("Stockpiles";Stockpiles.$A$1:$H$1;0);
+			1;1;"Stockpiles"
+	)
+)
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Recipes:
+--------------------------------------------------------------------------------------------------
+
+=IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2));NOT(ISBLANK(E2));NOT(ISBLANK(J2));NOT(ISBLANK(K2)));
+	"(educts=((itemType="&D2&",amount="&E2&")"
+	&IF(AND(NOT(ISBLANK(F2));NOT(ISBLANK(G2)));
+		",(itemType="&F2&",amount="&G2&")"
+		&IF(AND(NOT(ISBLANK(H2));NOT(ISBLANK(I2)));
+			",(itemType="&H2&",amount="&I2&"))";
+			")")
+		;")")
+	&",products=((itemType="&J2&",amount="&K2&")"
+	&IF(AND(NOT(ISBLANK(L2));NOT(ISBLANK(M2)));
+		",(itemType="&L2&",amount="&M2&")"
+		&IF(AND(NOT(ISBLANK(N2));NOT(ISBLANK(O2)));
+			",(itemType="&N2&",amount="&O2&"))";
+			")")
+		;")")
+	&",craftDuration="&C2&")"
+	;"")
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+RecipeList
+--------------------------------------------------------------------------------------------------
+
+=IF(NOT(ISBLANK($C2));
+	"("
+	&INDIRECT(ADDRESS(
+		MATCH($C2;CraftingRecipes.$A$1:$A$500;0);
+		MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+		1;1;"CraftingRecipes"
+	))
+	&IF(NOT(ISBLANK($D2));
+		","
+		&INDIRECT(ADDRESS(
+			MATCH($D2;CraftingRecipes.$A$1:$A$500;0);
+			MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+			1;1;"CraftingRecipes"
+		))
+		&IF(NOT(ISBLANK($E2));
+			","
+			&INDIRECT(ADDRESS(
+				MATCH($E2;CraftingRecipes.$A$1:$A$500;0);
+				MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+				1;1;"CraftingRecipes"
+			))
+			&IF(NOT(ISBLANK($F2));
+				","
+				&INDIRECT(ADDRESS(
+					MATCH($F2;CraftingRecipes.$A$1:$A$500;0);
+					MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+					1;1;"CraftingRecipes"
+				))
+				&IF(NOT(ISBLANK($G2));
+					","
+					&INDIRECT(ADDRESS(
+						MATCH($G2;CraftingRecipes.$A$1:$A$500;0);
+						MATCH("Recipe";CraftingRecipes.$A$1:$H$1;0);
+						1;1;"CraftingRecipes"
+					));
+				")")
+			;")")
+		;")")
+	;")")
+;"")
+		
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Display RecipeList in EXPORT Sheet
+--------------------------------------------------------------------------------------------------
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.$J2;RecipeList.$A$1:$A$500;0);
+		MATCH("RecipeList";RecipeList.$A$1:$H$1;0);
+			1;1;"RecipeList"
+	)
+)
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Harvest Recipes:
+--------------------------------------------------------------------------------------------------
+
+=IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2));NOT(ISBLANK(E2));NOT(ISBLANK(F2)));
+	"(products=((itemType="&E2&",amount="&F2&")"
+	&IF(AND(NOT(ISBLANK(G2));NOT(ISBLANK(H2)));
+		",(itemType="&G2&",amount="&H2&")"
+		&IF(AND(NOT(ISBLANK(I2));NOT(ISBLANK(J2)));
+			",(itemType="&I2&",amount="&J2&"))";
+			")")
+		;")")
+	&",polishDuration="&D2&",interactEnvType="&C2&")"
+	;"")
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+HarvestRecipeList:
+--------------------------------------------------------------------------------------------------
+
+=IF(NOT(ISBLANK($C2));
+	"("
+	&INDIRECT(ADDRESS(
+		MATCH($C2;HarvestRecipes.$A$1:$A$500;0);
+		MATCH("Recipe";HarvestRecipes.$A$1:$H$1;0);
+		1;1;"HarvestRecipes"
+	))
+	&IF(NOT(ISBLANK($D2));
+		","
+		&INDIRECT(ADDRESS(
+			MATCH($D2;HarvestRecipes.$A$1:$A$500;0);
+			MATCH("Recipe";HarvestRecipes.$A$1:$H$1;0);
+			1;1;"HarvestRecipes"
+		))
+		&IF(NOT(ISBLANK($E2));
+			","
+			&INDIRECT(ADDRESS(
+				MATCH($E2;HarvestRecipes.$A$1:$A$500;0);
+				MATCH("Recipe";HarvestRecipes.$A$1:$H$1;0);
+				1;1;"HarvestRecipes"
+			))
+			&IF(NOT(ISBLANK($F2));
+				","
+				&INDIRECT(ADDRESS(
+					MATCH($F2;HarvestRecipes.$A$1:$A$500;0);
+					MATCH("Recipe";HarvestRecipes.$A$1:$H$1;0);
+					1;1;"HarvestRecipes"
+				))
+				&IF(NOT(ISBLANK($G2));
+					","
+					&INDIRECT(ADDRESS(
+						MATCH($G2;HarvestRecipes.$A$1:$A$500;0);
+						MATCH("Recipe";HarvestRecipes.$A$1:$H$1;0);
+						1;1;"HarvestRecipes"
+					));
+				")")
+			;")")
+		;")")
+	;")")
+;"")
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+Display HarvestRecipeList in EXPORT Sheet:
+--------------------------------------------------------------------------------------------------
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.K2;HarvestRecipeList.$A$1:$A$500;0);
+		MATCH("RecipeList";RecipeList.$A$1:$H$1;0);
+			1;1;"HarvestRecipeList"
+	)
+)
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+DT_Subjects - EducateRecipe:
+--------------------------------------------------------------------------------------------------
+
+=IF(AND(NOT(ISBLANK(C2));NOT(ISBLANK(D2)));
+	"((itemType="&C2&",amount="&D2&")"
+	&IF(AND(NOT(ISBLANK(E2));NOT(ISBLANK(F2)));
+		",(itemType="&E2&",amount="&F2&")"
+		&IF(AND(NOT(ISBLANK(G2));NOT(ISBLANK(H2)));
+			",(itemType="&G2&",amount="&H2&")"					
+			&IF(AND(NOT(ISBLANK(I2));NOT(ISBLANK(J2)));
+				",(itemType="&I2&",amount="&J2&")"
+				&IF(AND(NOT(ISBLANK(K2));NOT(ISBLANK(L2)));
+					",(itemType="&K2&",amount="&L2&"))";
+					")")
+				;")")
+			;")")
+		;")")
+	;"")
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+DT_Subjects - Display EducateCost in EXPORT:
+--------------------------------------------------------------------------------------------------
+
+=INDIRECT(
+	ADDRESS(
+		MATCH(HumanReadable.I2;EducateRecipe.$A$1:$A$500;0);
+		MATCH("Recipe";EducateRecipe.$A$1:$H$1;0);
+			1;1;"EducateRecipe"
+	)
+)
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+:
+--------------------------------------------------------------------------------------------------
+
+
+
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+:
+--------------------------------------------------------------------------------------------------
+
+
+
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
+:
+--------------------------------------------------------------------------------------------------
+
+
+
+
+--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
