@@ -22,7 +22,7 @@ Requires nearby coal deposit.
 Produces Coal.
 
 A miner needs to work in the coalmine.",Coalmine,coalmineIcon,default,,,,,,
-Farm,Farm,Farm,8,225,Farmer,0,1,"(materials=((itemType=Lumber,amount=5),(itemType=Stone,amount=2),(itemType=Log,amount=2)),builderHits=25)","((itemType=Wheat,stockpileType=Product,maxStorage=5))",500,1000,"((products=((itemType=Wheat,amount=1)),polishDuration=3,interactEnvType=Wheat))",#N/A,"The farmer operates from this house, to plant and harvest wheat in the area you specified.
+Farm,Farm,Farm,8,225,Farmer,0,1,"(materials=((itemType=Lumber,amount=5),(itemType=Stone,amount=2)),builderHits=25)","((itemType=Wheat,stockpileType=Product,maxStorage=5))",500,1000,"((products=((itemType=Wheat,amount=1)),polishDuration=3,interactEnvType=Wheat))",#N/A,"The farmer operates from this house, to plant and harvest wheat in the area you specified.
 
 Produces Grain.
 
