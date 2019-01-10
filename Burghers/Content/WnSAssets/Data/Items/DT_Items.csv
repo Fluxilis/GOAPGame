@@ -43,17 +43,13 @@ Coal,Coal,Coal,7,"Black, flammable rocks.
 
 Mined by a coalminer from a coal deposit.
 
-Used to to fire the cauldrons in the mint and the iron smeltery.",coalIcon,default,75,0,0
+Used to fire the cauldrons in the mint and the iron smeltery.",coalIcon,default,75,0,0
 Iron,Iron,Iron,11,"Heavy Iron Bars.
 
 Melted from iron ore with coal in the Iron Smeltery.
 
 Used in the construction of the Palace.",ironIcon,default,39,0,0
-GoldCoins,GoldCoins,Gold Coins,10,"Precisely weighted golden coins.
-
-Melted from gold ore with coal, and pressed into shape in the mint.
-
-Used to educate Citizens in the school, and in the construction of the Palace.",goldCoinsIcon,goldCoins,250,0,0
+GoldCoins,GoldCoins,Gold Coins,10,"Precisely weighted golden coins.  Melted from gold ore with coal, and pressed into shape in the mint.  Used in the construction of the Palace.",goldCoinsIcon,goldCoins,250,0,0
 Wine,Wine,Wine,13,"Fermented Grape juice, sometimes referred to blood of the gods.
 
 Made in the Vineyard.

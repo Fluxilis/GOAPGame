@@ -65,10 +65,7 @@ Requires gold ore, coal.
 Produces gold coins.
 
 A smelter needs to work in the mint.",Mint,mintIcon,default,,,,,,
-Palace,Palace,Palace,17,2000,None,3,1,"(materials=((itemType=Lumber,amount=150),(itemType=Stone,amount=200),(itemType=GoldCoins,amount=100),(itemType=Iron,amount=75),(itemType=HandAxe,amount=50)),builderHits=1000)","((itemType=Handaxe,stockpileType=Educt,maxStorage=100),(itemType=Iron,stockpileType=Educt,maxStorage=1000))",0,0,#N/A,#N/A,"A Palace is the ultimate demonstration of wealth and power.
-
-It is a truly collossal undertaking to construct a palace.
-Constructing the palace wins the game.",Palace,palaceIcon,default,,,,,,
+Palace,Palace,Palace,17,2000,None,3,1,"(materials=((itemType=Lumber,amount=150),(itemType=Stone,amount=200),(itemType=GoldCoins,amount=100),(itemType=Iron,amount=75),(itemType=HandAxe,amount=50)),builderHits=1000)","((itemType=Handaxe,stockpileType=Educt,maxStorage=100),(itemType=Iron,stockpileType=Educt,maxStorage=1000))",0,0,#N/A,#N/A,A Palace is the ultimate demonstration of wealth and power.  It is a truly collossal undertaking to construct a palace.,Palace,palaceIcon,default,,,,,,
 Quarry,Quarry,Quarry,7,200,Mason,0,1,"(materials=((itemType=Lumber,amount=2)),builderHits=12)","((itemType=Stone,stockpileType=Product,maxStorage=7))",1000,1500,"((products=((itemType=Stone,amount=2)),polishDuration=6,interactEnvType=Stone))",#N/A,"The Mason operates from this house, to mine granite in the area you specified.
 
 Produces Stone.
